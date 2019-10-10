@@ -1,0 +1,45 @@
+Al llegar a nuevo tema se resuelve práctica de tema anterior.
+
+En teoría profesor NO ACEPTA dispositivos electrónicos.
+
+Se empleará R (se recomienda muy fuertemente aprender python)
+
+Cada tema se verá en 2 clases de teoría y 2 de laboratorio, pero en tres días:
+Día 1. Teoría tema actual / Lab práctica anterior
+Día 2. Teoría tema actual / Lab práctica actual
+Día 3. Teoria tema siguiente / Lab práctica anterior
+
+Grupos de lab serán de 3 personas.
+
+Hay que diseñar propia práctica. Buscar los datos uno mismo (aprender a hacer
+scraping para analizar los datos que uno mismo descargue). Cuanto menos se
+parezcan las prácticas al profesor, mejor. Hay que trastear por su cuenta, cada
+uno.
+
+17/09 Tema 1. Datos
+24/09 Tema 1. Datos / Lab Práctica 1 y P1. Datos
+01/10 Tema 2. Asociación / Lab P1. Datos
+08/10 Tema 2. Asociación / Lab P2. Asociación
+15/10 Tema 3. Clasificación Supervisada / Lab P2. Asociación
+22/10 Tema 3. Clasificación Supervisada / Lab P3. Clasificación Supervisada
+29/19 PEC1 (temas anteriores). Examen es 1 o dos ejercicios.
+    También (posiblemente) hay examen de lab. Hacer mismo ejercicio en
+    ordenador.
+05/11 Tema 4. Clasificación No Supervisada / Lab P3. Clasificacón Supervisada
+12/11 Tema 4. Clasificación No Supervisada / Lab P4. Clasificación no superv
+19/11 Tema 5. Datos Anómalos / Lab P4. Clasificación no superv
+26/11 Tema 6. Visualización de datos / Lab P5. Datos Anómalos
+03/12 Tema 6. Visualización de datos / Lab P5. Datos Anómalos
+10/12 Tema 6. Visualización de datos / Lab P6. Visualización de datos
+17/12 PEC2
+Fuera de tiempo. Tema 7. Utilización de R en Data Science.
+
+PECs 20% / cada una
+LABs 10% / cada una
+
+J. Han et al., Data Mining. Concepts and Techniques, Morgan Kaufman, 2012
+J. Leskovec, Mining of Massive Datasets. Cambridge University Press
+P. Teetor, R Cookbook. O'Reilly Media, Inc
+M. Crawley, The R Book. John Wiley & Sons
+
+Grupos de laboratorio se abren 17/09 a las 08.00 en cc.uah.es
