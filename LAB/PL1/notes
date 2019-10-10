@@ -1,56 +1,50 @@
-    Structure of calls: name(variables)
-        Example: contributors()
+Create a quant vector:      num <- c(2.3, 4, 5.6, 7, 9.1)
+Create a qual vector:       nom <- c("rojo", "verde", "azul")
+Create a logical vector:    logic <- c(T, F, T)
 
-    Assign a variable: x <- 2
-    Return / Call a variable: x
+Remove something: rm()
 
-    Create a quant vector: num <- c(2.3, 4, 5.6, 7, 9.1)
-    Create a qual vector: nom <- c("rojo", "verde", "azul")
-    Create a logical vector: logic <- c(T, F, T)
+// Define a matrix with the following data.
+pesos = (69.7, 71.3, 72.4, 68.4, 73)
+alturas = (168, 178, 180, 165, 169)
 
-    Remove something: rm()
+R fills up values by column by default, not by row.
+mat1 <- matrix(nrow = 2, ncol = 5, byrow = T, c(69.7, 71.3, 72.4, 68.4, 73, 168,
+    178, 180, 165, 169))
 
-    // Define a matrix with the following data.
-    pesos = (69.7, 71.3, 72.4, 68.4, 73)
-    alturas = (168, 178, 180, 165, 169)
+Ejercicio: introducir matriz logic que acabe like T F
+                                                  F T
+> mat2 <- matrix(nrow = 2, ncol = 2, byrow = T, c(T, F, F, T))
 
-    R fills up values by column by default, not by row.
-    mat1 <- matrix(nrow = 2, ncol = 5, byrow = T, c(69.7, 71.3, 72.4, 68.4, 73, 168,
-        178, 180, 165, 169))
+///////////////////////////////////////////////////////////////////////////////
 
-    Ejercicio: introducir matriz logic que acabe like T F
-                                                      F T
-    > mat2 <- matrix(nrow = 2, ncol = 2, byrow = T, c(T, F, F, T))
+Read a TXT file.
 
-    ///////////////////////////////////////////////////////////////////////////////
+- Tab between data.
+- Header that numbers the rows.
+- Except first row, it will have a white space, then HEADER.
+- Last row is \n
+- Decimals use "."
 
-    Read a TXT file.
+> satelites <- read.table("satelites.txt")
 
-    - Tab between data.
-    - Header that numbers the rows.
-    - Except first row, it will have a white space, then HEADER.
-    - Last row is \n
-    - Decimals use "."
+ nombre radio
+1   cordelia        13
+2   ofelia          16
+3   bianca          22
+4   cresida         33
+5   desdemona       29
+6   julieta         42
+7   rosalinda       27
+8   belinda         34
+9   luna-1986U10    20
+10  calibano        30
+11  luna-991        20
+12  luna_199U2      15
 
-    > satelites <- read.table("satelites.txt")
+Important to take into account the working directory.
 
-     nombre radio
-    1   cordelia        13
-    2   ofelia          16
-    3   bianca          22
-    4   cresida         33
-    5   desdemona       29
-    6   julieta         42
-    7   rosalinda       27
-    8   belinda         34
-    9   luna-1986U10    20
-    10  calibano        30
-    11  luna-991        20
-    12  luna_199U2      15
-
-    Important to take into account the working directory.
-
-    ///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 
 Read a CSV file.
 
@@ -115,17 +109,17 @@ cumsum(table(data)) -> cumulator_sum(absolute_freq(data))
 Funcion para frecuencia relativa acumulada.
 
 frecRetAcum <-
-    function(values)
+function(values)
 {
-    return (cumsum(table(values))/length(values))
+return (cumsum(table(values))/length(values))
 }
 
 Funcion para frecuencia acumulada.
 
 freRet <-
-    function(values)
+function(values)
 {
-    return (table(values)/length(values))
+return (table(values)/length(values))
 }
 
 
@@ -177,7 +171,7 @@ dp <- c("datasets", "utils", "grDevices", "graphics", "stats", "methods",
 {leche}
 
 (extremadamente ineficiente) -> Transformar en matriz binaria
-    pan     agua    cafe    leche   naranjas
+pan     agua    cafe    leche   naranjas
 s1  1       1       0       1       1
 s2  1       1       0       0       0
 s3  1       1       0       1       0

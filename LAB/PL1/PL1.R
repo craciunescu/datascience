@@ -14,7 +14,7 @@ library(modeest)
 # Check there is a file to load.
 while (!"satelites.txt" %in% list.files(getwd()))
 {
-    print("Data file not found. Add "satelites.txt" to the current directory.")
+    print("Data file not found. Add \"satelites.txt\" to the current directory.")
     invisible(readline(prompt="Press [enter] to continue"))
 }
 
@@ -55,7 +55,7 @@ arithmeticMean <- function(set, usrTrim = 0) (mean(set, trim = usrTrim))
 }
 
 ## 3.3. Variance.
-       variance <- function(set) {var(set) * (length(x) - 1 / length(x))} 
+       variance <- function(set) {var(set) * (length(set) - 1 / length(set))} 
 
 ## 3.4. Root Mean Square.
     rootMeanSqr <- function(set) {sqrt(mean(set ^ 2))}
@@ -64,7 +64,7 @@ arithmeticMean <- function(set, usrTrim = 0) (mean(set, trim = usrTrim))
   rootMeanSqrAn <- function(set) {sqrt(sum(set - mean(set)) ^ 2) / length(set)}
 
 ## 3.6. Interquartile Range.
-interQuantRange <- function(set) {IQR(set)}
+interQuartRange <- function(set) {IQR(set)}
 
 ## 3.7. Median Absolute Deviation.
 medAbsDeviation <- function(set) {mad(set)}
@@ -83,4 +83,4 @@ getMode      <- function(set) {mfv(set)}
 getQuartiles <- function(set) {quantile(set)}
 
 ## 4.3. 54th Quantile.
-getQuantiles <- function(set, range = 0) {quantile(set, probs = range}
+getQuantiles <- function(set, range = 0) {quantile(set, probs = range)}
