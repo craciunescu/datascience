@@ -1,7 +1,6 @@
 # History files
 .Rhistory
 .Rapp.history
-.Rprofile
 
 # Session Data files
 .RData
@@ -37,4 +36,5 @@ vignettes/*.pdf
 rsconnect/
 
 # Packrat related.
-packrat
+**/packrat/lib*/
+**/packrat/src/
