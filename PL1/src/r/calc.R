@@ -8,9 +8,6 @@
 #                                                                              #
 ################################################################################
 
-# Load needed packages.
-library(dplyr)
-
 ################################################################################
 
 # 1. Calculate absolute and relative satellite radius frequencies.
