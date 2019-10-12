@@ -41,6 +41,7 @@ the file is.
 After reading the data, different analyzes will be applied to those Uranus' moon radius:
 	
 		a) Calculate absolute and relative satellite radius frequencies:
+
 ABSOLUTE FRECUENCY:
 <<>>=			
 absoluteFreq    <- function(set) {table(set)}
@@ -54,10 +55,12 @@ cumAbsoluteFreq(radius)
 RELATIVE FRECUENCY
 <<>>=
 relativeFreq <- function(set) {table(set) / length(set)}
+relativeFreq(radius)
 @
 ACUMULATIVE RELATIVE FRECUENCY
 <<>>=
 cumRelativeFreq <- function(set) {cumsum(relativeFreq(set))}
+cumRelativeFreq(radius)
 @
 
 		b) Arithmetic mean
@@ -116,8 +119,12 @@ getMedian(radius)
 @
 			-MODE:
 <<>>=
-getMode      <- function(set) {mfv(set)}
-
+getMode      <- function(set) 
+{
+    uniqueVal <- unique(set)
+    uniqueVal[which.max(tabulate(match(set, uniqueVal)))]
+}
+getMode(radius)
 @
 			-QUARTILES:
 <<>>=
@@ -131,25 +138,76 @@ getQuantiles(radius)
 @
 
 	1.2 Now, the file will be "cardata.sav" where the same analyzes of data will be
-	applied to mpg. But this time, it is not necessary to calculate the 54th and the
+	applied to mpg_agrupada. But this time, it is not necessary to calculate the 54th and the
 	frequencies.
 	
 	It is necessary to import the foreign's library to read fata from SPSS files in R.
 <<>>=
 library(foreign)
 @
-	Then, the file is read, only data related to mpg is load into the variable mpg
+	Then, the file is read, only data related to mpg_agrupada is load into the variable mpg_agrupada
 	and we use a filter to delete all unusefull data and group then.
 <<>>=
 dataset = read.spss("cardata.sav", to.data.frame=TRUE)
-mpg = dataset$mpg
-mpg = mpg[!is.na(mpg)]
-mpg
+mpg_agrupada = dataset$mpg_agrupada
+mpg_agrupada = mpg_agrupada[!is.na(mpg_agrupada)]
+mpg_agrupada
 @
 
 	Now, data is ready to be analyzes so we can use the same functions as it has been used 
 	in the previous section.
+	
+ABSOLUTE FRECUENCY:
+<<>>=			
+absoluteFreq(mpg_agrupada)
+@
 
-			
+		b) Arithmetic mean
+<<>>=
+arithmeticMean(mpg_agrupada)
+@
+
+		c) Measures of dispersion, where the following page was used as a reference for this section:
+		http://iridl.ldeo.columbia.edu/dochelp/StatTutorial/Dispersion/index.html#Intro
+
+			- RANGE:
+<<>>=
+range(mpg_agrupada)
+@
+			- STANDARD DEVIATION
+<<>>=
+stdDeviation(mpg_agrupada)
+@
+			- VARIANCE:
+<<>>=
+variance(mpg_agrupada)
+@
+			- ROOT MEAN SQUARE: 
+<<>>=
+rootMeanSqr(mpg_agrupada)
+@
+			- ROOT MEAN SQUARE ANOMALY:
+<<>>=
+rootMeanSqrAn(mpg_agrupada)
+@
+			- INTERQUARTILE RANGE:
+<<>>=
+interQuartRange(mpg_agrupada)
+@
+			- MEDIAN ABSOLUTE DEVIATION
+<<>>=
+medAbsDeviation(mpg_agrupada)
+@
+		d) Finally, measures of order:
+		
+			-MEDIAN:
+<<>>=
+getMedian(mpg_agrupada)
+@
+			-MODE:
+<<>>=
+getMode(mpg_agrupada)
+@
+
 		
 \end{document}
