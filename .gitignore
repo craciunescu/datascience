@@ -1,6 +1,7 @@
 # History files
 .Rhistory
 .Rapp.history
+.Rprofile
 
 # Session Data files
 .RData
@@ -34,3 +35,6 @@ vignettes/*.pdf
 
 # Shiny token, see https://shiny.rstudio.com/articles/shinyapps.html
 rsconnect/
+
+# Packrat related.
+packrat
