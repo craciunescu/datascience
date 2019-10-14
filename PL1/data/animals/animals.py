@@ -29,14 +29,14 @@ def get_follow_link(root_url, element):
     return root_url+element.replace(" ", "-").lower()
 
 """ Obtains the information specified from the provided web elements. """ 
-def retrieve_elements(elements_web, wanted):
+def get_elements_data(root_url, elements_web, wanted):
 
     elements_parsed = []
 
     for idx, element in enumerate(elements_web):
         try:
             # Access page of each animal.
-            content     = get_url(get_follow_link(element))
+            content     = get_url(get_follow_link(root_url, element))
             attributes  = content.findAll("table")[1].findAll("tr")
             scraped     = list(filter(lambda l: wanted in l.text, attributes))[0]
             data        = scraped.find_all("td")[1].text.split()[0]
@@ -111,7 +111,8 @@ def to_CSV(name, content, headers):
 
 """ Scrapes the data. """
 def main():
-    url      = get_url("https://a-z-animals.com/animals/")
-    names    = get_follow_elements(url)
-    animals  = retrieve_elements(names, "Lifespan")
+    url        = "https://a-z-animals.com/animals/"
+    parsed_url = get_url("https://a-z-animals.com/animals/")
+    names      = get_follow_elements(parsed_url)
+    animals    = get_elements_data(url, names, "Lifespan")
     to_CSV("animals2", animals, ["name","lifespan"])
