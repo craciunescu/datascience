@@ -3,7 +3,6 @@
 \documentclass[a4paper]{article}
 
 \usepackage[utf8]{inputenc}
-
 \usepackage[english]{babel}
 
 \title{G4.P-1}
@@ -12,10 +11,6 @@
 \begin{document}
 
 \maketitle
-
-\title{G4.P-1}
-
-\author{David Emanuel Craciusecu y Laura Pérez Medeiro}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
