@@ -560,7 +560,7 @@ getQuantiles <- function(set, range = 0) {quantile(set, probs = range)}
 
 
 
-getQuantiles(radius)
+getQuantiles(radius,54)
 
 
 
@@ -1153,7 +1153,7 @@ getQuartiles(lifespan)
 
 
 
-getQuantiles(lifespan)
+getQuantiles(lifespan,54)
 
 
 
