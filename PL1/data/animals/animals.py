@@ -1,50 +1,117 @@
-# Needed imports.
+# Imports and dependencies.
 import csv
 import re
 import bs4
-from urllib.request import urlopen as uReq
+import time
+import sys
+from urllib.request import urlopen as url_request
 from bs4 import BeautifulSoup as soup
 
-# Accessed link.
-url = "https://a-z-animals.com/animals"
-
-# Open connection and retrieve contents.
-uClient  = uReq(url)
-pageHtml = uClient.read()
-uClient.close()
-
-# Parse the content.
-pageSoup = soup(pageHtml, "html.parser")
-
-# Retrieve table rows to parse.
-names = list(map(lambda l: l.text, pageSoup.findAll("b")))[2:595]
-
-# Obtain lifespan of each animal.
-animals = []
-
-for name in names:
+""" Downloads the contents of a page and returns the parsed HTML. """
+def get_url(url):
+    
     try:
-        # Access page of animal.
-        uClient = uReq("https://a-z-animals.com/animals/"+name.replace(" ","-").lower())
-        pageHtml = uClient.read()
-        uClient.close()
+        url_client = url_request(url)
+        page_html  = url_client.read()
+        url_client.close()
 
-        # Parse the page.
-        animalSoup = soup(pageHtml, "html.parser")
-
-        # Obtain info.
-        attributes = animalSoup.findAll("table")[1].findAll("tr")
-        lifespan = list(filter(lambda l: "Lifespan" in l.text, attributes))[0].find_all("td")[1].text.split()[0]
-
-        animals.append([name, lifespan])
+        return soup(page_html, "html.parser")
 
     except Exception:
-        print("Animal " + name + " does not have same standard.")
+        print("An error has occurred while parsing " + url)
 
-# Create .CSV file
-with open("animals.csv", "w", newline = "") as csvfile:
-    writer = csv.writer(csvfile, delimiter = ",", quotechar = '"', quoting =
-    csv.QUOTE_MINIMAL)
+""" Retrieves a list with all elements to follow when scraping. """
+def get_follow_elements(url_parsed):
+    return list(map(lambda l: l.text, url_parsed.findAll("b")))[2:595]
 
-    for animal in animals:
-        writer.writerow(animal)
+""" Generates the follow link for the provided element. """ 
+def get_follow_link(root_url, element):
+    return root_url+element.replace(" ", "-").lower()
+
+""" Obtains the information specified from the provided web elements. """ 
+def retrieve_elements(elements_web, wanted):
+
+    elements_parsed = []
+
+    for idx, element in enumerate(elements_web):
+        try:
+            # Access page of each animal.
+            content     = get_url(get_follow_link(element))
+            attributes  = content.findAll("table")[1].findAll("tr")
+            scraped     = list(filter(lambda l: wanted in l.text, attributes))[0]
+            data        = scraped.find_all("td")[1].text.split()[0]
+            
+            # Update progress bar.
+            update_progress("Downloading", idx/len(elements_web))
+
+            # Check data is pure and not range.
+            if "-" in data:
+                values = list(map(int, data.split("-")))
+                data   = sum(values) / len(values)
+
+            elements_parsed.append([element, data])
+
+        except:
+            print("Element: " + element + " could not be scraped.") 
+    
+    return elements_parsed
+
+""" Displays or updates a console progress bar 
+- Accepts a float between 0 and 1. Any int will be converted to a float.
+- A value under 0 represents 'HALT'.
+- A values at 1 or bigger represents 100%
+"""
+def update_progress(action, progress):
+    # Modify to change length of bar.
+    barLength = 10 
+    status = ""
+
+    # Progress bar logic.
+    if isinstance(progress, int):
+        progress = float(progress)
+
+    if not isinstance(progress, float):
+        progress = 0
+        status = "error: progress var must be float\r\n"
+    
+    if progress < 0:
+        progress = 0
+        status = "Halt...\r\n"
+    
+    if progress >= 1:
+        progress = 1
+        status = "Done...\r\n"
+    
+    block = int(round(barLength*progress))
+    text = "\rPercent: [{0}] {1}% {2}".format( "#"*block + "-"*(barLength-block), progress*100, status)
+    sys.stdpoit.write(action)
+    sys.stdout.write(text)
+    sys.stdout.flush()
+
+""" Writes the provided content to a CSV file. """
+def to_CSV(name, content, headers):
+    
+    # Create CSV writer.
+    with open(name + ".csv", "w", newline = "") as csvfile:
+        writer = csv.writer(
+            csvfile, 
+            delimiter = ",", 
+            quotechar = '"', 
+            quoting = csv.QUOTE_MINIMAL)
+        
+        # Headers.
+        writer.writerow(headers)
+          
+        # Actual content.
+        for idx, datum in enumerate(content):
+            
+            # Update progress bar.
+            update_progress("Creating CSV", idx/len(content))
+            writer.writerow(datum) 
+
+""" Scrapes the data. """
+def main():
+    url      = get_url("https://a-z-animals.com/animals/")
+    names    = get_follow_elements(url)
+    animals  = retrieve_elements(names, "Lifespan")
+    to_CSV("animals2", animals, ["name","lifespan"])
