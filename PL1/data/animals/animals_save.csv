@@ -1,3 +1,4 @@
+name lifespan
 Aardvark,23
 Abyssinian,15
 Adelie Penguin,10
@@ -54,7 +55,7 @@ Bactrian Camel,35
 Badger,4
 Balinese,15
 Banded Palm Civet,15
-Bandicoot,3-7
+Bandicoot,5.0
 Barb,3
 Barn Owl,5
 Barnacle,8
@@ -80,7 +81,7 @@ Birds Of Paradise,5
 Birman,20
 Bison,15
 Black Bear,15
-Black Rhinoceros,45-50
+Black Rhinoceros,47.5
 Black Russian Terrier,11
 Black Widow Spider,3
 Bloodhound,12
@@ -147,7 +148,7 @@ Cichlid,5
 Clouded Leopard,11
 Clown Fish,4
 Clumber Spaniel,15
-Coati,8-15
+Coati,11.5
 Cockroach,18
 Collared Peccary,10
 Collie,13
@@ -235,30 +236,30 @@ Frilled Lizard,10
 Frog,1
 Fur Seal,12
 Galapagos Penguin,15
-Galapagos Tortoise,100-150
+Galapagos Tortoise,125.0
 Gar,10
-Gecko,2-9
+Gecko,5.5
 Gentoo Penguin,15
 Geoffroys Tamarin,8
-Gerbil,3-5
+Gerbil,4.0
 German Pinscher,15
 German Shepherd,12
 Gharial,30
-Giant African Land Snail,3-10
-Giant Clam,20-100
+Giant African Land Snail,6.5
+Giant Clam,60.0
 Giant Panda Bear,20
-Gibbon,25-40
-Gila Monster,20-30
+Gibbon,32.5
+Gila Monster,25.0
 Giraffe,20
 Glass Lizard,10
 Glow Worm,5
-Goat,10-15
-Golden Lion Tamarin,8-15
+Goat,12.5
+Golden Lion Tamarin,11.5
 Golden Oriole,8
 Golden Retriever,12
 Goose,12
-Gopher,3-5
-Gorilla,35-50
+Gopher,4.0
+Gorilla,42.5
 Grasshopper,1
 Great Dane,7
 Great White Shark,30
@@ -266,44 +267,44 @@ Greater Swiss Mountain Dog,12
 Green Bee-Eater,12
 Greenland Dog,12
 Grey Mouse Lemur,3
-Grey Reef Shark,22-28
-Grey Seal,18-25
+Grey Reef Shark,25.0
+Grey Seal,21.5
 Greyhound,11
 Grizzly Bear,15
 Grouse,1
 Guinea Fowl,10
 Guinea Pig,3
 Guppy,2
-Hammerhead Shark,20-25
-Hamster,2-3
-Hare,2-8
+Hammerhead Shark,22.5
+Hamster,2.5
+Hare,5.0
 Harrier,16
 Havanese,15
-Hedgehog,3-6
+Hedgehog,4.5
 Hercules Beetle,3
-Hermit Crab,1-10
+Hermit Crab,5.5
 Heron,15
-Highland Cattle,15-22
+Highland Cattle,18.5
 Himalayan,14
 Hippopotamus,30
 Honey Bee,6
 Horn Shark,12
-Horned Frog,5-8
-Horse,25-30
+Horned Frog,6.5
+Horse,27.5
 Horseshoe Crab,20
-Howler Monkey,15-20
-Human,60-80
+Howler Monkey,17.5
+Human,70.0
 Humboldt Penguin,15
 Hummingbird,3
-Humpback Whale,50-60
-Hyena,20-25
+Humpback Whale,55.0
+Hyena,22.5
 Ibis,8
 Ibizan Hound,14
-Iguana,15-20
-Impala,12-15
+Iguana,17.5
+Impala,13.5
 Indian Elephant,55
-Indian Palm Squirrel,2-4
-Indian Rhinoceros,45-50
+Indian Palm Squirrel,3.0
+Indian Rhinoceros,47.5
 Indian Star Tortoise,30
 Indochinese Tiger,18
 Indri,15
@@ -311,44 +312,44 @@ Insect,2
 Irish Setter,16
 Irish WolfHound,9
 Jack Russel,16
-Jackal,8-15
+Jackal,11.5
 Jaguar,12
 Japanese Chin,14
 Japanese Macaque,25
-Javan Rhinoceros,30-45
+Javan Rhinoceros,37.5
 Javanese,14
-Jellyfish,1-5
-Kakapo,50-65
-Kangaroo,4-10
+Jellyfish,3.0
+Kakapo,57.5
+Kangaroo,7.0
 Keel Billed Toucan,15
-Killer Whale,50-60
-King Crab,15-30
+Killer Whale,55.0
+King Crab,22.5
 King Penguin,15
 Kingfisher,6
 Kiwi,8
 Koala,15
 Komodo Dragon,25
-Kudu,8-14
+Kudu,11.0
 Labradoodle,12
 Labrador Retriever,15
 Ladybird,2
 Leaf-Tailed Gecko,2
-Lemming,1-3
-Lemur,10-14
+Lemming,2.0
+Lemur,12.0
 Leopard,10
 Leopard Cat,10
-Leopard Seal,20-24
+Leopard Seal,22.0
 Leopard Tortoise,50
 Liger,18
 Lion,8
 Lionfish,10
 Little Penguin,10
-Lizard,1-30
-Llama,15-20
-Lobster,20-80
+Lizard,15.5
+Llama,17.5
+Lobster,50.0
 Long-Eared Owl,40
-Lynx,12-20
-Macaroni Penguin,15-20
+Lynx,16.0
+Macaroni Penguin,17.5
 Macaw,50
 Magellanic Penguin,15
 Magpie,8
@@ -356,52 +357,52 @@ Maine Coon,12
 Malayan Civet,15
 Malayan Tiger,18
 Maltese,17
-Manatee,50-70
-Mandrill,20-28
+Manatee,60.0
+Mandrill,24.0
 Manta Ray,15
 Marine Toad,10
 Markhor,10
 Marsh Frog,5
 Masked Palm Civet,15
 Mastiff,12
-Mayfly,1-2
+Mayfly,1.5
 Meerkat,10
 Millipede,7
-Minke Whale,30-50
-Mole,3-6
+Minke Whale,40.0
+Mole,4.5
 Molly,3
-Mongoose,10-15
-Monitor Lizard,8-30
-Monkey,10-30
+Mongoose,12.5
+Monitor Lizard,19.0
+Monkey,20.0
 Monte Iberia Eleuth,1
 Moorhen,1
-Moose,10-16
-Moray Eel,10-30
+Moose,13.0
+Moray Eel,20.0
 Moth,40
-Mountain Gorilla,35-50
-Mountain Lion,10-20
-Mouse,2-5
-Mule,15-20
-Neanderthal,35-50
+Mountain Gorilla,42.5
+Mountain Lion,15.0
+Mouse,3.5
+Mule,17.5
+Neanderthal,42.5
 Neapolitan Mastiff,10
 Newfoundland,10
-Newt,2-15
+Newt,8.5
 Nightingale,1
 Norfolk Terrier,15
 Norwegian Forest,15
-Numbat,4-8
-Nurse Shark,20-25
+Numbat,6.0
+Nurse Shark,22.5
 Ocelot,8
-Octopus,2-15
+Octopus,8.5
 Okapi,20
 Old English Sheepdog,12
 Olm,10
-Opossum,2-7
+Opossum,4.5
 Orang-utan,30
 Ostrich,50
-Otter,15-25
+Otter,20.0
 Oyster,1
-Pademelon,4-8
+Pademelon,6.0
 Panther,12
 Parrot,40
 Patas Monkey,12
@@ -412,20 +413,20 @@ Penguin,20
 Persian,19
 Pheasant,7
 Pied Tamarin,8
-Pig,8-15
-Pika,3-6
+Pig,11.5
+Pika,4.5
 Pike,12
 Pink Fairy Armadillo,5
 Piranha,20
 Platypus,9
 Pointer,13
-Poison Dart Frog,2-4
+Poison Dart Frog,3.0
 Polar Bear,20
 Pond Skater,1
 Poodle,16
 Pool Frog,1
-Porcupine,8-12
-Possum,5-8
+Porcupine,10.0
+Possum,6.5
 Prawn,2
 Proboscis Monkey,15
 Puffer Fish,4
@@ -435,25 +436,24 @@ Puma,10
 Purple Emperor,1
 Puss Moth,3
 Pygmy Hippopotamus,30
-Pygmy Marmoset,8-12
+Pygmy Marmoset,10.0
 Quail,3
 Quetzal,20
 Quokka,5
-Quoll,3-6
-Rabbit,4-8
-Raccoon,12-16
+Quoll,4.5
+Rabbit,6.0
+Raccoon,14.0
 Raccoon Dog,3
 Radiated Tortoise,30
 Ragdoll,14
-Rat,2-5
-Red Knee Tarantula,20-30
+Rat,3.5
+Red Knee Tarantula,25.0
 Red Panda,8
 Red Wolf,10
-Red-handed Tamarin,8
-Reindeer,12-15
-Rhinoceros,30-45
-River Dolphin,12-18
-River Turtle,10-30
+Reindeer,13.5
+Rhinoceros,37.5
+River Dolphin,15.0
+River Turtle,20.0
 Robin,1
 Rock Hyrax,5
 Rockhopper Penguin,15
@@ -463,85 +463,85 @@ Royal Penguin,15
 Russian Blue,14
 Sabre-Toothed Tiger,20
 Saint Bernard,10
-Salamander,5-20
+Salamander,12.5
 Sand Lizard,5
 Saola,8
-Scorpion,4-25
+Scorpion,14.5
 Scorpion Fish,10
 Sea Dragon,2
-Sea Lion,15-22
-Sea Otter,12-15
-Sea Slug,1-4
-Sea Squirt,7-30
-Sea Turtle,60-80
-Sea Urchin,15-200
+Sea Lion,18.5
+Sea Otter,13.5
+Sea Slug,2.5
+Sea Squirt,18.5
+Sea Turtle,70.0
+Sea Urchin,107.5
 Seahorse,2
-Seal,15-25
+Seal,20.0
 Serval,10
-Sheep,5-10
+Sheep,7.5
 Shih Tzu,15
-Shrimp,1-2
+Shrimp,1.5
 Siamese,12
 Siamese Fighting Fish,1
 Siberian,15
 Siberian Husky,14
 Siberian Tiger,18
 Silver Dollar,2
-Skunk,5-8
-Sloth,25-40
+Skunk,6.5
+Sloth,32.5
 Slow Worm,10
 Snail,1
 Snake,30
-Snapping Turtle,20-32
+Snapping Turtle,26.0
 Snowshoe,14
 Snowy Owl,10
 Somali,19
 South China Tiger,18
-Spadefoot Toad,4-8
+Spadefoot Toad,6.0
 Sparrow,4
 Spectacled Bear,20
 Sperm Whale,50
-Spider Monkey,15-27
-Spiny Dogfish,25-80
-Sponge,15-30
-Squid,5-30
-Squirrel,2-8
+Spider Monkey,21.0
+Spiny Dogfish,52.5
+Sponge,22.5
+Squid,17.5
+Squirrel,5.0
 Squirrel Monkey,15
 Sri Lankan Elephant,55
 Staffordshire Bull Terrier,14
 Stag Beetle,3
-Starfish,3-27
+Starfish,15.0
 Stellers Sea Cow,50
-Stick Insect,1-2
+Stick Insect,1.5
 Stingray,15
-Stoat,4-6
+Stoat,5.0
 Striped Rocket Frog,10
 Sumatran Elephant,55
 Sumatran Orang-utan,30
-Sumatran Rhinoceros,30-45
+Sumatran Rhinoceros,37.5
 Sumatran Tiger,18
 Sun Bear,15
 Swan,8
 Tang,8
 Tapanuli Orang-utan,30
-Tapir,20-25
+Tapir,22.5
 Tarsier,12
-Tasmanian Devil,5-8
+Tasmanian Devil,6.5
 Tawny Owl,4
 Termite,2
-Tetra,2-5
-Thorny Devil,12-20
+Tetra,3.5
+Thorny Devil,16.0
 Tibetan Mastiff,15
 Tiffany,15
-Tiger,18-25
-Tiger Salamander,10-15
-Tiger Shark,30-40
-Tortoise,30-150
+Tiger,21.5
+Tiger Salamander,12.5
+Tiger Shark,35.0
+Tortoise,90.0
 Toucan,12
-Tree Frog,2-4
+Tree Frog,3.0
 Tropicbird,10
-Tuatara,50-100
-Turkey,1-10
+Tuatara,75.0
+Turkey,5.5
 Turkish Angora,14
 Uakari,16
 Uguisu,2
@@ -549,38 +549,38 @@ Umbrellabird,12
 Vampire Bat,8
 Vervet Monkey,12
 Vulture,20
-Wallaby,12-15
+Wallaby,13.5
 Walrus,40
-Warthog,12-18
+Warthog,15.0
 Wasp,22
-Water Buffalo,15-25
-Water Dragon,10-20
+Water Buffalo,20.0
+Water Dragon,15.0
 Water Vole,0.5
 Weasel,1
 Welsh Corgi,13
 West Highland Terrier,15
 Western Gorilla,35
 Western Lowland Gorilla,35
-Whale Shark,60-70
+Whale Shark,65.0
 Whippet,15
-White Faced Capuchin,16-40
+White Faced Capuchin,28.0
 White Tiger,10
 Wild Boar,15
-Wildebeest,15-20
-Wolf,10-12
-Wolverine,10-15
-Wombat,20-26
+Wildebeest,17.5
+Wolf,11.0
+Wolverine,12.5
+Wombat,23.0
 Woodlouse,2
-Woodpecker,6-11
+Woodpecker,8.5
 Woolly Mammoth,60
-Woolly Monkey,7-10
+Woolly Monkey,8.5
 Wrasse,3
 X-Ray Tetra,2
-Yak,15-20
+Yak,17.5
 Yellow-Eyed Penguin,10
 Yorkshire Terrier,15
 Zebra,20
 Zebra Shark,15
-Zebu,12-16
+Zebu,14.0
 Zonkey,15
 Zorse,15

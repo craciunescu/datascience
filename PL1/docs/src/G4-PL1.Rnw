@@ -1,25 +1,55 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \documentclass[a4paper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 
-
-
 \title{G4.P-1}
-\author{David Emanuel Craciusecu y Laura Pérez Medeiro}
-
+\author{David Emanuel Craciunescu \and Laura Pérez Medeiro}
 
 \begin{document}
 
-
 \maketitle
-The test laboratory will be divided into two parts:
 
-1. An exercise mentored by the teacher, in which all the contents explained
-in the fisrt unit will be revised. The files used in this exercise are:
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-	1.1 "Satelites.txt", which contains information about the different ratious of Uranus' moons.
-	The aim of the exercise is obtained the same result as we get into the theorical class. 
-	
+\section*{Introduction}
+
+The main purpose of this introductory laboratorio practice is to get students
+accustomed to the R development environment and to teach to these the basics of
+data science with such environment and language.
+
+Work-wise, the practice is divided in the two following parts:
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection*{Development on provided dataset}
+
+In this section, the student will have to formalize and develop on a provided
+exercise and given dataset by the professor. This does not only enable the
+professor to analyze if such student has completely and correctly understood the
+contents of the laboratory practice, but it also serves as a starting point for
+any student unable to face the workload of such project without any kind of
+previous guidance or help.
+
+This specific practice provides the dataset \textit{satelites.txt}, which
+contains the \textbf{names} and \textbf{radii} of some of the most common moons
+of Uranus. Working with this dataset has been thoroughly explained by the
+professor in the almost three laboratory classes dedicated to this specific
+practice, so an explanation or any kind of further analysis into this specific
+dataset is considered not only redundant, but time-wasting as well.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Development on obtained dataset}
+
+This section of the laboratory practice aims to create a deeper understanding in
+the nature of dataset retrieval by the students and to enhance their ability in
+the labors of recognising good quality data sources and valid information
+retrieval from the various analysis performed on these datasets.
+
+The chosen data source for this exercise was scraped off the webpage
+\textit{www.a-z-animals.com}, and the data itself was TODO.
+
 <<>>=
 while (!"satelites.txt" %in% list.files(getwd()))
 {

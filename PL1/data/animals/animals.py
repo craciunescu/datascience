@@ -1,9 +1,19 @@
+################################################################################
+#           Fundamentos de la Ciencia de Datos - 78106 - R-PL1                 #
+#                               Grupo 4 - P1                                   #
+#   Authors:                                                                   #
+#   - David Emanuel Craciunescu                                                #
+#   - Laura Pérez Medeiro                                                      #
+#                                                                              #
+################################################################################
+
 # Imports and dependencies.
 import csv
 import re
 import bs4
 import time
 import sys
+
 from urllib.request import urlopen as url_request
 from bs4 import BeautifulSoup as soup
 
@@ -42,7 +52,7 @@ def get_elements_data(root_url, elements_web, wanted):
             data        = scraped.find_all("td")[1].text.split()[0]
             
             # Update progress bar.
-            update_progress("Downloading", idx/len(elements_web))
+            update_progress("Downloading", round(idx/len(elements_web), 2))
 
             # Check data is pure and not range.
             if "-" in data:
@@ -63,7 +73,7 @@ def get_elements_data(root_url, elements_web, wanted):
 """
 def update_progress(action, progress):
     # Modify to change length of bar.
-    barLength = 10 
+    barLength = 50
     status = ""
 
     # Progress bar logic.
@@ -83,8 +93,8 @@ def update_progress(action, progress):
         status = "Done...\r\n"
     
     block = int(round(barLength*progress))
-    text = "\rPercent: [{0}] {1}% {2}".format( "#"*block + "-"*(barLength-block), progress*100, status)
-    sys.stdpoit.write(action)
+    text = "\r[{0}] {1}% {2}".format( "#"*block + "-"*(barLength-block), progress*100, status)
+    sys.stdout.write(action)
     sys.stdout.write(text)
     sys.stdout.flush()
 
@@ -103,16 +113,15 @@ def to_CSV(name, content, headers):
         writer.writerow(headers)
           
         # Actual content.
-        for idx, datum in enumerate(content):
-            
-            # Update progress bar.
-            update_progress("Creating CSV", idx/len(content))
-            writer.writerow(datum) 
+        for datum in content:
+            writer.writerow(datum)
 
 """ Scrapes the data. """
-def main():
+def scrape():
     url        = "https://a-z-animals.com/animals/"
     parsed_url = get_url("https://a-z-animals.com/animals/")
     names      = get_follow_elements(parsed_url)
     animals    = get_elements_data(url, names, "Lifespan")
-    to_CSV("animals2", animals, ["name","lifespan"])
+    to_CSV("animals", animals, ["name","lifespan"])
+
+scrape()
