@@ -1,37 +1,48 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
+
 \documentclass[a4paper]{article}
 
+
+
 \usepackage[utf8]{inputenc}
+
 \usepackage[english]{babel}
 
-%%% ESTO LO HE METIDO YO
-\usepackage{hyperref}
-%%% ESTO LO HE METIDO YO
+
 
 \title{G4.P-1}
+
 \author{David Emanuel Craciunescu \and Laura Pérez Medeiro}
 
+
+
 \begin{document}
+
+
 
 \maketitle
 
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
 
 \section*{Introduction}
 
-\begin{document}
+
 
 The main purpose of this introductory laboratorio practice is to get students
 accustomed to the R development environment and to teach to these the basics of
 data science with such environment and language.
 
 Work-wise, the practice is divided in the two following parts:
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection*{Development on provided dataset}
 
+\subsection*{Development on provided dataset}
 In this section, the student will have to formalize and develop on a provided
 exercise and given dataset by the professor. This does not only enable the
 professor to analyze if such student has completely and correctly understood the
@@ -75,17 +86,19 @@ This dataset has been provided in the \textit{txt} format. In order to input it
 into R, the following command must be used.
 
 <<>>=
+while (!"satelites.txt" %in% list.files(getwd()))
+{
+print("Data file not found. Add \"satelites.txt\" to the current directory.")
+invisible(readline(prompt="Press [enter] to continue"))
+}
 
 satelites <- read.table("satelites.txt")
-
 satelites
 
-radius <- satelites$radio
-
+radius <- satelites $radio
 radius
 
 @
-
 When loading external datasets into R, it is important to take into account that
 the working directory must be the same as the file's directory when calling
 read.table(). Otherwise, one the route to where the found can be found must be
@@ -101,58 +114,65 @@ following way:
 %%%%%%%%%
 
 \textbf{Absolute Frequency}
+
 <<>>= 
-
 absoluteFreq <- function(set) {table(set)}
-
 absoluteFreq(radius)
-
 @
+
 
 %%%%%%%%%
 
 \textbf{Cumulative Absolute Frequency}
+
 <<>>=
-
 cumAbsoluteFreq <- function(set) {cumsum(absoluteFreq(set))}
-
 cumAbsoluteFreq(radius)
-
 @
 
 %%%%%%%%%
 
 \textbf{Relative Frequency}
+
 <<>>=
 
 relativeFreq <- function(set) {table(set) / length(set)}
-
 relativeFreq(radius)
-
 @
+
 
 %%%%%%%%%
-
 \textbf{Cumulative Relative Frequency}
 <<>>=
-
 cumRelativeFreq <- function(set) {cumsum(relativeFreq(set))}
-
 cumRelativeFreq(radius)
-
 @
-
 %%%%%%%%%%%%%%%%%%%%
 
 \subsubsection*{Arithmetic mean}
 
 <<>>=
 
+
+<<>>=
+
+
+
 arithmeticMean <- function(set, usrTrim = 0) (mean(set, trim = usrTrim))
+
+
 
 arithmeticMean(radius)
 
+
+
 @
+
+
+
+
+
+
 
 %%%%%%%%%%%%%%%%%%%%
 
@@ -161,147 +181,231 @@ arithmeticMean(radius)
 For this specific section, the following webpage has been used as a \href{http://iridl.ldeo.columbia.edu/dochelp/StatTutorial/Dispersion/index.html#Intro}{reference}
 
 %%%%%%%%%
+- RANGE:
 
-\textbf{Radius}
 <<>>=
 
 range <- function(set) {max(set) - min(set)}
-
 range(radius)
-
 @
 
-%%%%%%%%%
-
-\textbf{Standard deviation}
+- STANDARD DEVIATION
 <<>>=
-
 stdDeviation <- function(set)
-
 {
-
 sd(set) * (sqrt((length(set) - 1) / length(set)))
-
 }
 
 stdDeviation(radius)
-
 @
 
-%%%%%%%%%
 
-\textbf{Variance}
+
+- VARIANCE:
+
+
 
 <<>>=
+
+
 
 variance <- function(set) {var(set) * (length(set) - 1 / length(set))}
 
+
+
 variance(radius)
+
+
 
 @
 
-%%%%%%%%%
 
-\textbf{Root mean square}
+
+- ROOT MEAN SQUARE:
+
+
 
 <<>>=
+
+
 
 rootMeanSqr <- function(set) {sqrt(mean(set ^ 2))}
 
+
+
 rootMeanSqr(radius)
+
+
 
 @
 
-%%%%%%%%%
-\textbf{Root mean square anomaly}
+
+
+- ROOT MEAN SQUARE ANOMALY:
+
+
 
 <<>>=
+
+
 
 rootMeanSqrAn <- function(set) {sqrt(sum(set - mean(set)) ^ 2) / length(set)}
 
+
+
 rootMeanSqrAn(radius)
+
+
 
 @
 
-%%%%%%%%%
 
-\textbf{Interquartile range}
+
+- INTERQUARTILE RANGE:
+
+
+
 <<>>=
+
+
 
 interQuartRange <- function(set) {IQR(set)}
 
+
+
 interQuartRange(radius)
+
+
 
 @
 
-%%%%%%%%%
 
-\textbf{Median absolute deviation}
+
+- MEDIAN ABSOLUTE DEVIATION
+
+
+
 <<>>=
+
+
 
 medAbsDeviation <- function(set) {mad(set)}
 
+
+
 medAbsDeviation(radius)
+
+
 
 @
 
-%%%%%%%%%%%%%%%%%%%%
 
-\subsubsection*{Measures of order}
 
-%%%%%%%%%
+d) Finally, measures of order:
 
-\textbf{Median}
+
+
+
+
+
+
+-MEDIAN:
+
+
+
 <<>>=
+
+
 
 getMedian <- function(set) {median(set)}
 
+
+
 getMedian(radius)
+
+
 
 @
 
-%%%%%%%%%
 
-\textbf{Mode}
+
+-MODE:
+
+
+
 <<>>=
+
+
 
 getMode <- function(set)
 
+
+
 {
+
+
 
 uniqueVal <- unique(set)
 
+
+
 uniqueVal[which.max(tabulate(match(set, uniqueVal)))]
+
+
 
 }
 
+
+
 getMode(radius)
+
+
 
 @
 
-%%%%%%%%%
 
-\textbf{Quartiles}
+
+-QUARTILES:
+
+
 
 <<>>=
+
+
 
 getQuartiles <- function(set) {quantile(set)}
 
+
+
 getQuartiles(radius)
+
+
 
 @
 
-%%%%%%%%%
 
-\textbf{54th quantile}
+
+-54th QUANTILE:
+
+
 
 <<>>=
 
+
+
 getQuantiles <- function(set, range = 0) {quantile(set, probs = range)}
 
-getQuantiles(radius, 54)
+
+
+getQuantiles(radius)
+
+
 
 @
+
+
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -331,12 +435,8 @@ order to perform a correct statistical analysis.
 <<>>=
 
 dataset = read.spss("cardata.sav", to.data.frame=TRUE)
-
 mpg = dataset$mpg
-
 mpg = mpg[!is.na(mpg)]
-
-
 @
 
 Once the data is prepared, the exact same functions as the previous section can
@@ -347,9 +447,7 @@ be used.
 \subsubsection*{Arithmetic mean}
 
 <<>>=
-
 arithmeticMean(mpg)
-
 @
 
 %%%%%%%%%%%%%%%%%%%
@@ -360,30 +458,39 @@ arithmeticMean(mpg)
 
 \textbf{Range}
 
+
 <<>>=
+
+
 
 range(mpg)
 
-@
 
+
+@
 %%%%%%%%%
 
 \textbf{Standard Deviation}
 
+
+
 <<>>=
+
+
 
 stdDeviation(mpg)
 
+
+
 @
+
 
 %%%%%%%%%
 
 \textbf{Variance}
 
 <<>>=
-
 variance(mpg)
-
 @
 
 %%%%%%%%%%
@@ -391,30 +498,33 @@ variance(mpg)
 \textbf{Root mean square}
 
 <<>>=
-
 rootMeanSqr(mpg)
-
 @
+
 
 %%%%%%%%%
 
 \textbf{Root mean square anomaly}
 
 <<>>=
-
 rootMeanSqrAn(mpg)
-
 @
-
 %%%%%%%%%
 
 \textbf{Interquartile range}
 
+
+
 <<>>=
+
+
 
 interQuartRange(mpg)
 
+
+
 @
+
 
 %%%%%%%%%
 
@@ -422,7 +532,12 @@ interQuartRange(mpg)
 
 <<>>=
 
+
+
+
 medAbsDeviation(mpg)
+
+
 
 @
 
@@ -432,20 +547,313 @@ medAbsDeviation(mpg)
 
 %%%%%%%%%
 
+
 \textbf{Median}
 
+
+
 <<>>=
-
 getMedian(mpg)
-
 @
 
 \textbf{Mode}
+<<>>=
+getMode(mpg)
+@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection*{Cardata dataset}
+
+The same analysis the authors have performed on the previous dataset will be
+performed on the Cardata dataset. This time, the variable to use will be called
+\textit{mpg} and the 54th quantile and the frequencies are not needed.
+
+%%%%%%%%%%%%%%%%%%%%
+
+animals <- read.csv(head= T, sep=",", "animals2.csv" )
+
+
+
+animals
+
+lifespan <- animals $lifespan
+lifespan
+
+@
+
+
+
+
+a) Calculate absolute and relative satellite animals frequencies:
+
+ABSOLUTE FRECUENCY:
+
+<<>>= 
+absoluteFreq(lifespan)
+@
+
+ACUMULATIVE ABSOLUTE FRECUENCY:
 
 <<>>=
 
-getMode(mpg)
+
+cumAbsoluteFreq(lifespan)
 
 @
-		
+
+RELATIVE FRECUENCY
+
+<<>>=
+
+relativeFreq(lifespan)
+
+
+
+@
+
+
+
+ACUMULATIVE RELATIVE FRECUENCY
+
+
+
+<<>>=
+
+
+
+cumRelativeFreq(lifespan)
+
+
+
+@
+
+
+
+
+
+
+
+b) Arithmetic mean
+
+
+
+<<>>=
+
+
+
+arithmeticMean(lifespan)
+
+
+
+@
+
+
+
+
+
+
+
+c) Measures of dispersion, where the following page was used as a reference for this section:
+
+
+
+http://iridl.ldeo.columbia.edu/dochelp/StatTutorial/Dispersion/index.html#Intro
+
+
+
+
+
+
+
+- RANGE:
+
+
+
+<<>>=
+
+range(lifespan)
+
+@
+
+
+
+- STANDARD DEVIATION
+
+
+
+<<>>=
+
+
+stdDeviation(lifespan)
+
+
+
+@
+
+
+
+- VARIANCE:
+
+
+
+<<>>=
+
+
+
+variance(lifespan)
+
+
+
+@
+
+
+
+- ROOT MEAN SQUARE:
+
+
+
+<<>>=
+
+
+
+rootMeanSqr(lifespan)
+
+
+
+@
+
+
+
+- ROOT MEAN SQUARE ANOMALY:
+
+
+
+<<>>=
+
+
+
+
+rootMeanSqrAn(lifespan)
+
+
+
+@
+
+
+
+- INTERQUARTILE RANGE:
+
+
+
+<<>>=
+
+
+
+
+interQuartRange(lifespan)
+
+
+
+@
+
+
+
+- MEDIAN ABSOLUTE DEVIATION
+
+
+
+<<>>=
+
+
+
+medAbsDeviation(lifespan)
+
+
+
+@
+
+
+
+d) Finally, measures of order:
+
+
+
+
+
+
+
+-MEDIAN:
+
+
+
+<<>>=
+
+
+
+
+getMedian(lifespan)
+
+
+
+@
+
+
+
+-MODE:
+
+
+
+<<>>=
+
+
+
+
+
+
+getMode(lifespan)
+
+
+
+@
+
+
+
+-QUARTILES:
+
+
+
+<<>>=
+
+
+
+getQuartiles(lifespan)
+
+
+
+@
+
+
+
+-54th QUANTILE:
+
+
+
+<<>>=
+
+
+
+getQuantiles(lifespan)
+
+
+
+@
+
+
+
+
+
+
+
+
 \end{document}
