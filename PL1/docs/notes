@@ -1,32 +1,37 @@
-Create a quant vector:      num <- c(2.3, 4, 5.6, 7, 9.1)
-Create a qual vector:       nom <- c("rojo", "verde", "azul")
-Create a logical vector:    logic <- c(T, F, T)
+# Create different vectors.
 
-Remove something: rm()
+- Quant: ```num <- c(2.3, 4, 5.6, 7, 9.1)```
+-  Qual: ```num <- c("rojo", "verde", "azul")```
+- Logic: ```logic <- c(T, F, T)
 
-// Define a matrix with the following data.
+# Remove anything
+- rm()
+
+# Define a matrix with the following data.
+```R
 pesos = (69.7, 71.3, 72.4, 68.4, 73)
 alturas = (168, 178, 180, 165, 169)
 
-R fills up values by column by default, not by row.
-mat1 <- matrix(nrow = 2, ncol = 5, byrow = T, c(69.7, 71.3, 72.4, 68.4, 73, 168,
-    178, 180, 165, 169))
+    ## R fills up the values by column by default, not by row.
 
-Ejercicio: introducir matriz logic que acabe like T F
-                                                  F T
-> mat2 <- matrix(nrow = 2, ncol = 2, byrow = T, c(T, F, F, T))
+mat1 <- matrix(nrow = 2, ncol = 5, byrow = T, 
+    c(69.7, 71.3, 72.4, 68.4, 73, 168, 178, 180, 165, 169))
 
-///////////////////////////////////////////////////////////////////////////////
+```
 
-Read a TXT file.
+# Execise: Create a logical matrix that'll end up like T F
+#                                                      F T
 
+``` mat2 <- matrix(nrow = 2, ncol = 2, byrow = T, c(T, F, F, T))
+
+# How to read a .txt file.
 - Tab between data.
-- Header that numbers the rows.
+- Header that number the rows.
 - Except first row, it will have a white space, then HEADER.
-- Last row is \n
+- Last row in \n
 - Decimals use "."
 
-> satelites <- read.table("satelites.txt")
+```satelites <- read.table("satelites.txt")```
 
  nombre radio
 1   cordelia        13
@@ -42,22 +47,22 @@ Read a TXT file.
 11  luna-991        20
 12  luna_199U2      15
 
+```
+
 Important to take into account the working directory.
 
-///////////////////////////////////////////////////////////////////////////////
-
-Read a CSV file.
-
+# Read a CSV file. 
 - Coma and space between data.
 - Can separate with different symbol than comma but need to specify.
 - One instance - One row
 - Same as txt
 - HEADERS ARE IMPORTANT
 
-> satelites_csv <- read.table(head = T, sep = "," , "satelites.csv")
+``` R
+satelites_csv <- read.table(head = T, sep = "," , "satelites.csv")
 
-head = T -> There is a header
-sep = "," -> This the separator
+head = T # There is a header
+sep = "," # This the separator
 
 NAME, RADIUS
 cordelia, 13
@@ -73,67 +78,60 @@ calibano, 30
 luna-991, 20
 luna_199U2, 1
 
-///////////////////////////////////////////////////////////////////////////////
+```
+
+# Obvious notes.
 
 length() is used for length, lmao.
-length(dataframe $ name_of_var)
+```length(dataframe $ name_of_var)```
 
-//////////////////////////////////////////////////////////////////////////////
+## Various functions.
+```range <- max(satelites $radio) - min(satelites $radio)```
 
-range <- max(satelites $radio) - min(satelites $radio)
 
-Ejercicio -> definir funcion rango para automatizar proceso
+### Exercise -> Define range function to automatize process.
 
-range <- function(value)
-{
-the_range <- max(value) - min(value)
-return(the_range)
-}
-
+``` R
+range <- function(value) {max(value) - min(value)}
 range(satelites$radio)
+```
 
-How to save a function forever (create a .R)
+### Save out to a file.
+- How to save a function forever (create a .R)
 
+``` R
 dump("name_of_function", file = "name_of_file.R")
+```
 
-Load a script from .R: source("name_of_file")
+- Load from a script
+``` source("name_of_file")```
 
-///////////////////////////////////////////////////////////////////////////////
 
-Frecuencia absoluta.
-table(data) -> Absolute frequency of the data.
+## Statistical Calculation.
 
-Frecuencia absoluta acumulada.
+### Abs freq.
+```table(data) -> Absolute frequency of the data.```
+
+### Frecuencia absoluta acumulada.
 cumsum(table(data)) -> cumulator_sum(absolute_freq(data))
 
-Funcion para frecuencia relativa acumulada.
+```
+frecRetAcum <- function(values) {(cumsum(table(values))/length(values))}
+```
 
-frecRetAcum <-
-function(values)
-{
-return (cumsum(table(values))/length(values))
-}
+```
+freRet <- function(values) {return (table(values)/length(values))}
+```
 
-Funcion para frecuencia acumulada.
+### Media de valores.
 
-freRet <-
-function(values)
-{
-return (table(values)/length(values))
-}
+``` mean() ``` 
 
+### Last value
 
-///////////////////////////////////////////////////////////////////////////////
+Assign to last value freecabscumradio <- .Last.value
 
-Media de valores: mean()
-
-
-
-///////////////////////////////////////////////////////////////////////////////
-
-Assign to last value freecabscumradio <- .Las.value
-
-///////////////////////////////////////////////////////////////////////////////
+### Open a SPSS file.
 
 Open a SPSS file in R.
 
@@ -141,54 +139,3 @@ Choose a file file.choose() and all that shit.
 
 1. library(foreign)
 2. dataset = read.spss("directory", to.data.frame=TRUE)
-
-
-# Different calculation forms.
-so = s[order(s $ Radio), ]
-so = s[rev( ), ]
-mediana <- median(s$Radio)
-cuart1 <- quantile(s $ Radio, 0.25)
-
-# Load the spss file into "dataset"
-# mpg = dataset$mpg
-
-mean(mpg) doens't work because of null values
-you gotta use a filter.
-
-///////////////////////////////////////////////////////////////////////////////
-
-// Loading packages.
-dp <- c("datasets", "utils", "grDevices", "graphics", "stats", "methods",
-"foreign")
-
-///////////////////////////////////////////////////////////////////////////////
-
-{pan, agua, leche, naranjas}
-{pan, agua, cafe, leche}
-{pan, agua, leche}
-{pan, cafe, leche}
-{pan, agua}
-{leche}
-
-(extremadamente ineficiente) -> Transformar en matriz binaria
-pan     agua    cafe    leche   naranjas
-s1  1       1       0       1       1
-s2  1       1       0       0       0
-s3  1       1       0       1       0
-s4  1       0       1       1       0
-s5  1       1       0       0       0   
-s6  1       0       0       0       1
-
-introducir en R ->
-
-muestra <- Matrix(c(1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 0j 1, 1, 0, 0, 0, 0, 0, 0, 1, 0), 6, 5, byrow = T, dimnames = list(c("s1", "s2", "s3", "s4", "s5", "s6")), c("Pan", "Agua", "Cafe", "Leche", "Naranjas"), sparse = T)
-
-muestrangCMatrix <- as(muestra, "nsparseMatrix")
-transpmuestrdRGCMatrix <- t(muestrangCMatrix)
-
-transacciones <- as(transpuestrangCMatrix, "transactions")
-transacciones
-Summary(transacciones)
-asociaciones <- apriori(transacciones, parameter = list(support = 0.5,
-confidence = 0.8))
-inspect(asociaciones)
