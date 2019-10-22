@@ -1,0 +1,146 @@
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[ampersand]{easylist}
+
+\title{G4.P-1}
+\author{David Emanuel Craciunescu \and Laura Pérez Medeiro}
+
+\begin{document}
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Introduction}
+
+The aim of this second laboratory practice is to teach how to realise data association analysis using
+R tools.
+
+As the previous practice, it will be divided in two main parts:
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Data association analysis for six shopping basket}
+
+	\subsection*{Loading packages}
+
+At the begining of the session, it was explained how to personalise the work enviroment. The first step
+to do that, consist on searching the path where is the file called RProfile. Inside this file it will be
+added the "foreign" package to the packages' list load by default.
+
+Then, the file must be saved after executing the following command:
+<<>>=
+getOption("defaultPackages")
+@
+In the followeing step, it will be checked if arules' packages could be found in the standard library.
+<<>>=
+library()
+@
+
+As it can not be found there, it must be load. There are two options for doing it:
+
+& Using global help for searching arules' package, where it can be found a .zip with the correspondat library
+and also a .pdf which explained in detail how to use the package correctly. After that, we execute:
+<<>>= 
+install.packages('D:\UNIVERSIDAD\4º\FUNDAMENTOS DE LA CIENCIA DE DATOS\arules_1.5-0.zip', repos=NULL)
+library(arules)
+@
+
+In order to check that the package has been install correctyl, we can use the command:
+<<>>=
+search()
+@
+
+& The package can be also download directly from R, using the following command to install stable CRAN version:
+<<>>=
+install.packages("arules")
+@
+and to intall a current development version:
+<<>>=
+library("devtools")
+install_github("mhahsler/arules")
+@
+
+	\subsection*{Loading data}
+The data used for the analysis consist on the following matrix, composed by six shopping baskets:
+{Bread, water,  milk,   oranges}
+{Bread, water,  coffee, milk}
+{Bread, water,  milk}
+{Bread, coffee, milk}
+{Bread, water}
+{Milk}
+
+It is necessary to transform this matrix into once that only contains 1 and 0's.
+
+<<>>=
+sample <- Matrix(c(1,1,0,1,1, 1,1,1,1,0, 1,1,0,1,0, 1,0,1,1,0, 1,1,0,0,0, 0,0,0,1,0), 6, 5, byrow = T,  dimnames = list(c("event1", "event2", "event", "event4", "event5", "event6"), c("Bread", "Water", "Coffee", "Milk", "Oranges")), sparse = T)
+sample
+@
+
+Now, rules are converted into data frame using as()
+
+<<>>=
+samplengCMatrix <- as(sample, "nsparseMatrix")
+samplengCMatrix
+@
+
+And the matrix is transposed:
+<<>>=
+transpsamplengCMatrix <- t(samplengCMatrix)
+transpsamplengCMatrix
+@
+
+With the following command, a summary of the performed transactions is obtain:
+
+<<>>=
+transactions <- as(transpsamplengCMatrix, "transactions")
+transactions
+summary(transactions)
+@
+
+And finally, apriori's algorithm is applied:
+<<>>=
+associations <- apriori (transactions, parameter=list(support=0.5, confidence=0.8))
+inspect(associations)
+@
+Where the first two association are not relevant and can be omitted.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Data association analysis for eigth car sales}
+In this second part, it will be used a txt file which contains information about eitgh car sales.
+The same analysis as it has been done before should be applied with this new data, but ussing a support
+equal or higer than 40% and confidence equal or higher than 90%.
+
+
+First, the .txt field must be generate with the data:
+<<>>=
+data <- paste(
+	"X C N B,",
+	"X C B S,",
+	"X C N,",
+	"X N B S,",
+	"X C B,",
+	"N,",
+	"X C B,",
+	"S A,",
+	sep="\n")
+
+cat(data)
+write(data,file = "cars.txt")
+@
+
+Then, we read the file in order to create the transactions
+<<>>=
+transactions= read.transactions(file="cars.txt",rm.duplicates=FALSE, format="basket", sep=",");
+summary(transactions)
+
+associations<- apriori(transactions,parameter = list(sup = 0.4, conf = 0.9, target="rules"));
+inspect(associations)
+
+@
+
+\end{document}

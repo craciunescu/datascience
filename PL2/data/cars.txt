@@ -1,0 +1,7 @@
+X C B S
+X C N
+X N B S
+X C B
+N
+X C B
+S A
