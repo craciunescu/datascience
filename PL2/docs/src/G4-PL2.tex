@@ -1,0 +1,147 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+
+
+\usepackage{Sweave}
+\begin{document}
+\title{G4.PL-2}
+\author{David Emanuel Craciunescu \and Laura Pérez Medeiro}
+
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Introduction}
+
+The aim of this second laboratory practice is to teach how to realise data association analysis using
+R tools.
+
+As the previous practice, it will be divided in two main parts:
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Data association analysis for six shopping basket}
+
+	\subsection*{Loading packages}
+
+At the begining of the session, it was explained how to personalise the work enviroment. The first step
+to do that, consist on searching the path where is the file called RProfile. Inside this file it will be
+added the "foreign" package to the packages' list load by default.
+
+Then, the file must be saved after executing the following command:
+\begin{Schunk}
+\begin{Sinput}
+> getOption("defaultPackages")
+\end{Sinput}
+\begin{Soutput}
+[1] "datasets"  "utils"     "grDevices" "graphics"  "stats"     "methods"  
+\end{Soutput}
+\end{Schunk}
+In the followeing step, it will be checked if arules' packages could be found in the standard library.
+\begin{Schunk}
+\begin{Sinput}
+> library()
+\end{Sinput}
+\end{Schunk}
+
+As it can not be found there, it must be load. There are two options for doing it:
+
+- Using global help for searching arules' package, where it can be found a .zip with the correspondat library
+and also a .pdf which explained in detail how to use the package correctly. After that, we execute:
+
+\begin{Schunk}
+\begin{Sinput}
+> #install.packages('D:\UNIVERSIDAD\4º\FUNDAMENTOS DE LA CIENCIA DE DATOS\arules_1.5-0.zip', repos=NULL)
+> #library(arules)
+\end{Sinput}
+\end{Schunk}
+
+In order to check that the package has been install correctyl, we can use the command:
+\begin{Schunk}
+\begin{Sinput}
+> search()
+\end{Sinput}
+\begin{Soutput}
+[1] ".GlobalEnv"        "package:stats"     "package:graphics" 
+[4] "package:grDevices" "package:utils"     "package:datasets" 
+[7] "package:methods"   "Autoloads"         "package:base"     
+\end{Soutput}
+\end{Schunk}
+
+- The package can be also download directly from R, using the following command to install stable CRAN version:
+\begin{Schunk}
+\begin{Sinput}
+> install.packages("arules")
+\end{Sinput}
+\begin{Soutput}
+package ‘arules’ successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+	C:\Users\lperez\AppData\Local\Temp\Rtmp8QQe8Q\downloaded_packages
+\end{Soutput}
+\end{Schunk}
+and to intall a current development version:
+\begin{Schunk}
+\begin{Sinput}
+> #library("devtools")
+> #install_github("mhahsler/arules")
+\end{Sinput}
+\end{Schunk}
+
+	\subsection*{Loading data}
+The data used for the analysis consist on the following matrix, composed by six shopping baskets:
+{Bread, water,  milk,   oranges}
+{Bread, water,  coffee, milk}
+{Bread, water,  milk}
+{Bread, coffee, milk}
+{Bread, water}
+{Milk}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Data association analysis for eigth car sales}
+In this second part, it will be used a txt file which contains information about eitgh car sales.
+The same analysis as it has been done before should be applied with this new data, but ussing a support
+equal or higer than 40% and confidence equal or higher than 90%.
+
+
+First, the .txt field must be generate with the data:
+\begin{Schunk}
+\begin{Sinput}
+> data <- paste(
++ 	"X C N B,",
++ 	"X C B S,",
++ 	"X C N,",
++ 	"X N B S,",
++ 	"X C B,",
++ 	"N,",
++ 	"X C B,",
++ 	"S A,",
++ 	sep="\n")
+> cat(data)
+\end{Sinput}
+\begin{Soutput}
+X C N B,
+X C B S,
+X C N,
+X N B S,
+X C B,
+N,
+X C B,
+S A,
+\end{Soutput}
+\begin{Sinput}
+> write(data,file = "cars.txt")
+\end{Sinput}
+\end{Schunk}
+
+Then, we read the file in order to create the transactions
+\begin{Schunk}
+\begin{Sinput}
+> transactions= read.transactions(file="cars.txt",rm.duplicates=FALSE, format="basket", sep=",");
