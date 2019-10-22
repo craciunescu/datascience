@@ -3,14 +3,11 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
-
-
-
 \usepackage{Sweave}
+
 \begin{document}
 \title{G4.PL-2}
 \author{David Emanuel Craciunescu \and Laura Pérez Medeiro}
-
 
 \maketitle
 
@@ -18,50 +15,105 @@
 
 \section*{Introduction}
 
-The aim of this second laboratory practice is to teach how to realise data association analysis using
-R tools.
+The objective of the second laboratory practice is to teach students how to
+perform data association analysis by using R tools and methodologies.
 
-As the previous practice, it will be divided in two main parts:
+The other objectives this practice has have already been clearly defined in the
+informative memory of Practice 1. That kind of introduction will be considered
+obvious henceforth.
+
+Just like the previous practice, it will be divided in two main parts:
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section*{Data association analysis for six shopping basket}
+\section*{Data association analysis for six shopping baskets}
 
-	\subsection*{Loading packages}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-At the begining of the session, it was explained how to personalise the work enviroment. The first step
-to do that, consist on searching the path where is the file called RProfile. Inside this file it will be
-added the "foreign" package to the packages' list load by default.
+\subsection*{Loading packages}
+The beginning of the session started with an insight into work-environment
+personalization. The first step towards this is searching the path of the
+\textit{Rprofile} configuration file is located.
 
-Then, the file must be saved after executing the following command:
+Given that this file can execute arbitrary R code, the professor recommended
+that the students load the package \textit{foreign} by default. Even if useful,
+it must be noted that this practice is not considered a good practice and it
+might be, in some cases, dangerous.
+
+After some exploration and customization the authors have arrived to the
+conclusion that a good \textit{Rprofile} customization can be summarized as
+follows:
+
+\begin{Schunk}
+\begin{Sinput}
+# Example Rprofile.
+
+# Things the user might want to change.
+options(editor="vim")
+options(...)
+
+# Related to interactive prompt.
+options(prompt="> ")
+options(continue="+ ")
+
+# General options.
+options(tab.width = 4)
+options(width = 80)
+options(graphics.record = TRUE)
+
+# First function (will be executed last)
+.first <- function()
+{
+    library(foreign)
+    cat("\nWelcome!")
+}
+
+# Last function (will be executed just before closing)
+.Last <- function()
+{
+    cat("\nGoodbye!")
+}
+\end{Sinput}
+\end{Soutput}
+
+%%%%%%%%%%%%%%%%%%%
+
+Once saved, the following command will provide a list of the packages loaded by
+default.
 \begin{Schunk}
 \begin{Sinput}
 > getOption("defaultPackages")
 \end{Sinput}
 \begin{Soutput}
-[1] "datasets"  "utils"     "grDevices" "graphics"  "stats"     "methods"  
+[1] "datasets" "utils" "grDevices" "graphics" "stats" "methods" "foreign"
 \end{Soutput}
 \end{Schunk}
-In the followeing step, it will be checked if arules' packages could be found in the standard library.
+
+The following step will make sure the \textit{arules} package is loaded into the
+environment.
 \begin{Schunk}
 \begin{Sinput}
 > library()
 \end{Sinput}
 \end{Schunk}
 
-As it can not be found there, it must be load. There are two options for doing it:
+It cannot be found here, therefore it must be loaded. In order to do this one
+can use either of two choices: (1) using global help to search for
+\textit{arules} and downloading a \textit{.zip} from the CRAN mirror or
+installing it directly using the\textit{install.packages()} command.
 
-- Using global help for searching arules' package, where it can be found a .zip with the correspondat library
-and also a .pdf which explained in detail how to use the package correctly. After that, we execute:
+The first method would force us to download the compressed package and install
+it from that source. This is an effective way of doing so but can be problematic
+when versioning is taken into place.
 
 \begin{Schunk}
 \begin{Sinput}
-> #install.packages('D:\UNIVERSIDAD\4º\FUNDAMENTOS DE LA CIENCIA DE DATOS\arules_1.5-0.zip', repos=NULL)
+> #install.packages('C:\PATH_TO_THE_LIBRARY\arules_1.5-0.zip', repos=NULL)
 > #library(arules)
 \end{Sinput}
 \end{Schunk}
 
-In order to check that the package has been install correctyl, we can use the command:
+In order to check that the package has been installed correctly, we can use the command:
 \begin{Schunk}
 \begin{Sinput}
 > search()
@@ -73,7 +125,11 @@ In order to check that the package has been install correctyl, we can use the co
 \end{Soutput}
 \end{Schunk}
 
-- The package can be also download directly from R, using the following command to install stable CRAN version:
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The other approach is much simpler and the only thing needed is installing it
+directly from source.
+
 \begin{Schunk}
 \begin{Sinput}
 > install.packages("arules")
@@ -82,10 +138,11 @@ In order to check that the package has been install correctyl, we can use the co
 package ‘arules’ successfully unpacked and MD5 sums checked
 
 The downloaded binary packages are in
-	C:\Users\lperez\AppData\Local\Temp\Rtmp8QQe8Q\downloaded_packages
+	C:\Users\PATH_TO_THE_LIBRARY
 \end{Soutput}
 \end{Schunk}
-and to intall a current development version:
+
+In case one would want to install a version that's currently in development:
 \begin{Schunk}
 \begin{Sinput}
 > #library("devtools")
@@ -93,14 +150,19 @@ and to intall a current development version:
 \end{Sinput}
 \end{Schunk}
 
-	\subsection*{Loading data}
-The data used for the analysis consist on the following matrix, composed by six shopping baskets:
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Loading data}
+
+The data used for the analysis consistes of this matrix, composed by the six
+following baskets:
 {Bread, water,  milk,   oranges}
 {Bread, water,  coffee, milk}
 {Bread, water,  milk}
 {Bread, coffee, milk}
 {Bread, water}
 {Milk}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
