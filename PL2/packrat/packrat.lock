@@ -1,0 +1,19 @@
+PackratFormat: 1.4
+PackratVersion: 0.5.0
+RVersion: 3.6.1
+Repos: CRAN=https://cran.rediris.es
+
+Package: arules
+Source: CRAN
+Version: 1.6-4
+Hash: a439346bb823838f94c71177b446d424
+
+Package: foreign
+Source: CRAN
+Version: 0.8-72
+Hash: 3c4fdecc4c94b6c5071bf71eff3fc95f
+
+Package: packrat
+Source: CRAN
+Version: 0.5.0
+Hash: 498643e765d1442ba7b1160a1df3abf9
