@@ -15,7 +15,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Data analysis using Hunt decision algorithm and linear regression}
+\section{Data analysis using Hunt decision algorithm and linear regression for qualifications and planets data}
 
   \subsection{}The data use in this exercise will be nine students marks and califications, as it has been done in the teorical classes. For this analysis, it wil be used the gain information meause, using Gini as the impurity measure.
  
@@ -28,25 +28,32 @@ sample = data.frame(qualifications)
 @
 
 In order to make the analysis, the package rpart will be used. this means, that it should be install before working with the dataset. In order to manage R packages, it will be used Packrat
- <<>>=
+
+<<>>=
 library(rpart)
-clasification = rpart(C.G~.,data=sample, method="class", minsplit = 1)
+clasification = rpart(C.G ~ .,
+                      data = sample,
+                      method = "class",
+                      minsplit = 1)
 clasification
 @
 
 Another package that can be used to do this analysis is tree:
-
+<<>>=
 library(tree)
-(clasificationTree = tree(C.G~., data = sample, mincut = 1, minsize = 2))
+(clasificationTree = tree(C.G ~ .,
+                          data = sample,
+                          mincut = 1,
+                          minsize = 2)
+)
 clasificationTree
-
-
- 
+@
   \subsection{} In this second part, tha dataset use is planets.txt. To this dataset, linear regression will be applied.
   
 As it has been done before, the first step consist on reading data from a \textit{txt} file:
  
 <<>>=
+library(utils)
 data <- read.table("planets.txt")
 data = data.frame(data)
 names(data)
@@ -80,13 +87,43 @@ anova <- aov(Density~Radius, data)
 summary(anova)
 @
 
-\section{} The following part consist on doing the same analysis as it has been done before, but now with new datasets.
- <<>>=
+\section{Data analysis using Hunt decision algorithm and linear regression for vehicules and pairs of data}
+
+The following part consist on doing the same analysis as it has been done before, but now with new datasets.
+<<>>=
 library(utils)
-data <- read.table("vehiculos.txt")
-sample = data.frame(data)
-library(rpart)
-clasification = rpart(TipoVehiculo~.,data=sample, method="class", minsplit = 1)
-clasification
+
+vehicules <- read.table("vehiculos.txt")
+sampleV = data.frame(vehicules)
 @
+In this file, TC = license type, NR = number of roads that  has the vehicule, NP = number of people that can be in the vehicule and TV = vehicule's type.
+<<>>=
+library(rpart)
+clasificationV = rpart(TV ~.,
+                       data = sampleV,
+                       method="class",
+                       minsplit =1)
+clasificationV
+@
+
+<<>>=
+library(tree)
+(clasificationTreeV = tree(TV ~.,
+                          data = sampleV,
+                          mincut = 1,
+                          minsize = 2)
+)
+clasificationTreeV
+@
+
+\subsection{} Then, the lineal regression anaylisis will be done:
+<<>>=
+library(utils)
+pairs <- read.table("pair1.txt")
+dataP = data.frame(pairs)
+names(dataP)
+@
+
+
+\section{}
 \end{document}

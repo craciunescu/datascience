@@ -15,7 +15,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Data analysis using Hunt decision algorithm and linear regression}
+\section{Data analysis using Hunt decision algorithm and linear regression for qualifications and planets data}
 
   \subsection{}The data use in this exercise will be nine students marks and califications, as it has been done in the teorical classes. For this analysis, it wil be used the gain information meause, using Gini as the impurity measure.
  
@@ -30,26 +30,71 @@
 \end{Schunk}
 
 In order to make the analysis, the package rpart will be used. this means, that it should be install before working with the dataset. In order to manage R packages, it will be used Packrat
- <<>>=
-library(utils)
-library(rpart)
-clasification = rpart(C.G~.,data=sample, method="class", minsplit = 1)
-clasification
+
+\begin{Schunk}
+\begin{Sinput}
+> library(rpart)
+> clasification = rpart(C.G ~ .,
++                       data = sample,
++                       method = "class",
++                       minsplit = 1)
+> clasification
+\end{Sinput}
+\begin{Soutput}
+n= 9 
+
+node), split, n, loss, yval, (yprob)
+      * denotes terminal node
+
+1) root 9 3 Ss (0.3333333 0.6666667)  
+  2) Labo=A,B 5 2 Ap (0.6000000 0.4000000)  
+    4) Pract=A,B 3 0 Ap (1.0000000 0.0000000) *
+    5) Pract=C,D 2 0 Ss (0.0000000 1.0000000) *
+  3) Labo=C,D 4 0 Ss (0.0000000 1.0000000) *
+\end{Soutput}
+\end{Schunk}
 
 Another package that can be used to do this analysis is tree:
+\begin{Schunk}
+\begin{Sinput}
+> library(tree)
+> (clasificationTree = tree(C.G ~ .,
++                           data = sample,
++                           mincut = 1,
++                           minsize = 2)
++ )
+\end{Sinput}
+\begin{Soutput}
+node), split, n, deviance, yval, (yprob)
+      * denotes terminal node
 
-library(tree)
-(clasificationTree = tree(C.G~., data = sample, mincut = 1, minsize = 2))
-clasificationTree
+1) root 9 11.46 Ss ( 0.3333 0.6667 )  
+  2) Labo: A,B 5  6.73 Ap ( 0.6000 0.4000 )  
+    4) Pract: A,B 3  0.00 Ap ( 1.0000 0.0000 ) *
+    5) Pract: C,D 2  0.00 Ss ( 0.0000 1.0000 ) *
+  3) Labo: C,D 4  0.00 Ss ( 0.0000 1.0000 ) *
+\end{Soutput}
+\begin{Sinput}
+> clasificationTree
+\end{Sinput}
+\begin{Soutput}
+node), split, n, deviance, yval, (yprob)
+      * denotes terminal node
 
-
- 
+1) root 9 11.46 Ss ( 0.3333 0.6667 )  
+  2) Labo: A,B 5  6.73 Ap ( 0.6000 0.4000 )  
+    4) Pract: A,B 3  0.00 Ap ( 1.0000 0.0000 ) *
+    5) Pract: C,D 2  0.00 Ss ( 0.0000 1.0000 ) *
+  3) Labo: C,D 4  0.00 Ss ( 0.0000 1.0000 ) *
+\end{Soutput}
+\end{Schunk}
   \subsection{} In this second part, tha dataset use is planets.txt. To this dataset, linear regression will be applied.
   
 As it has been done before, the first step consist on reading data from a \textit{txt} file:
  
 \begin{Schunk}
 \begin{Sinput}
+> library(utils)
 > data <- read.table("planets.txt")
 > data = data.frame(data)
 > names(data)
@@ -124,11 +169,89 @@ Residuals    2 1.4314  0.7157
 \end{Soutput}
 \end{Schunk}
 
-\section{} The following part consist on doing the same analysis as it has been done before, but now with new datasets.
- <<>>=
-data <- read.table("vehiculos.txt")
-sample = data.frame(data)
-library(rpart)
-clasification = rpart(TipoVehiculo~.,data=sample, method="class", minsplit = 1)
-clasification
+\section{Data analysis using Hunt decision algorithm and linear regression for vehicules and pairs of data}
+
+The following part consist on doing the same analysis as it has been done before, but now with new datasets.
+\begin{Schunk}
+\begin{Sinput}
+> library(utils)
+> vehicules <- read.table("vehiculos.txt")
+> sampleV = data.frame(vehicules)
+\end{Sinput}
+\end{Schunk}
+In this file, TC = license type, NR = number of roads that  has the vehicule, NP = number of people that can be in the vehicule and TV = vehicule's type.
+\begin{Schunk}
+\begin{Sinput}
+> library(rpart)
+> clasificationV = rpart(TV ~.,
++                        data = sampleV,
++                        method="class",
++                        minsplit =1)
+> clasificationV
+\end{Sinput}
+\begin{Soutput}
+n= 10 
+
+node), split, n, loss, yval, (yprob)
+      * denotes terminal node
+
+ 1) root 10 7 Bicicleta (0.3000000 0.2000000 0.3000000 0.2000000)  
+   2) TC=N 3 0 Bicicleta (1.0000000 0.0000000 0.0000000 0.0000000) *
+   3) TC=A,B 7 4 Coche (0.0000000 0.2857143 0.4285714 0.2857143)  
+     6) NR>=3 5 2 Coche (0.0000000 0.4000000 0.6000000 0.0000000)  
+      12) NR>=5 2 0 CamiÃ³n (0.0000000 1.0000000 0.0000000 0.0000000) *
+      13) NR< 5 3 0 Coche (0.0000000 0.0000000 1.0000000 0.0000000) *
+     7) NR< 3 2 0 Moto (0.0000000 0.0000000 0.0000000 1.0000000) *
+\end{Soutput}
+\end{Schunk}
+
+\begin{Schunk}
+\begin{Sinput}
+> library(tree)
+> (clasificationTreeV = tree(TV ~.,
++                           data = sampleV,
++                           mincut = 1,
++                           minsize = 2)
++ )
+\end{Sinput}
+\begin{Soutput}
+node), split, n, deviance, yval, (yprob)
+      * denotes terminal node
+
+1) root 10 27.32 Bicicleta ( 0.3 0.2 0.3 0.2 )  
+  2) NR < 3 5  6.73 Bicicleta ( 0.6 0.0 0.0 0.4 )  
+    4) TC: A,B 2  0.00 Moto ( 0.0 0.0 0.0 1.0 ) *
+    5) TC: N 3  0.00 Bicicleta ( 1.0 0.0 0.0 0.0 ) *
+  3) NR > 3 5  6.73 Coche ( 0.0 0.4 0.6 0.0 )  
+    6) NR < 5 3  0.00 Coche ( 0.0 0.0 1.0 0.0 ) *
+    7) NR > 5 2  0.00 CamiÃ³n ( 0.0 1.0 0.0 0.0 ) *
+\end{Soutput}
+\begin{Sinput}
+> clasificationTreeV
+\end{Sinput}
+\begin{Soutput}
+node), split, n, deviance, yval, (yprob)
+      * denotes terminal node
+
+1) root 10 27.32 Bicicleta ( 0.3 0.2 0.3 0.2 )  
+  2) NR < 3 5  6.73 Bicicleta ( 0.6 0.0 0.0 0.4 )  
+    4) TC: A,B 2  0.00 Moto ( 0.0 0.0 0.0 1.0 ) *
+    5) TC: N 3  0.00 Bicicleta ( 1.0 0.0 0.0 0.0 ) *
+  3) NR > 3 5  6.73 Coche ( 0.0 0.4 0.6 0.0 )  
+    6) NR < 5 3  0.00 Coche ( 0.0 0.0 1.0 0.0 ) *
+    7) NR > 5 2  0.00 CamiÃ³n ( 0.0 1.0 0.0 0.0 ) *
+\end{Soutput}
+\end{Schunk}
+
+\subsection{} Then, the lineal regression anaylisis will be done:
+\begin{Schunk}
+\begin{Sinput}
+> library(utils)
+> pairs <- read.table("pair1.txt")
+> dataP = data.frame(pairs)
+\end{Sinput}
+\end{Schunk}
+
+
+\section{}
 \end{document}
