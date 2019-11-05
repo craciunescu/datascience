@@ -125,5 +125,24 @@ names(dataP)
 @
 
 
+The coeficient's matrix correlation:
+
+<<>>=
+cor(dataP)
+@
+
+Minimun square error line:
+<<>>=
+regression <- lm( x~y, dataP)
+summary(regression)
+@
+
+The equation's line is y = -0.9991 + 1.3331x, and the anova is:
+
+<<>>= 
+anova <- aov(x~y, dataP) 
+summary(anova)
+@
+
 \section{}
 \end{document}
