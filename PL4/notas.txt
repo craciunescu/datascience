@@ -1,0 +1,28 @@
+matriz de notas 
+
+	4	4
+	3	5
+	1	2				0	1
+m=	5	5			c = 2	2
+	0	1
+	2	2
+	4	5
+	2	1
+	
+	Introducimos la matriz de datos
+	 m <- matrix (c(4,4,3,5,1,2,5,5,0,1,2,2,4,5,2,1),2,8)
+
+
+	establecer los centroides
+	c <- matrix(c(0,1,2,2),2,2)
+	(c<- t(c))
+	
+	usaremos la funcion Kmean, la cual tiene los siguientes atributos (m, centroides, iter.max)
+	esta funcion viene cargada en los paquetes por defecto de R. Para comprobar: search() stats
+	(clasificacions = Kmeans(m,c,4))
+	
+	(m = cbind(clasificacions$cluster,m))
+	
+	Lo siguiente que hacemos es partir la matriz en dos matrices
+	(mc1 = subset(m,m[,1]==1))--> con esto obtenemos los datos del primer cluster de datos
+	(mc2 = subset(m,m[,1]==2))
