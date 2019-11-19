@@ -61,6 +61,8 @@ def get_elements_data(root_url, elements_web, wanted):
 
             elements_parsed.append([element, data])
 
+       # Revisar except condiciones.
+
         except:
             print("Element: " + element + " could not be scraped.") 
     
