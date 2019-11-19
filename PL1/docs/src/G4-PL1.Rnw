@@ -1,0 +1,485 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+\title{G4.P-1}
+\author{David Emanuel Craciunescu \and Laura Pérez Medeiro}
+
+\begin{document}
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Introduction}
+
+The main purpose of this introductory laboratorio practice is to get students
+accustomed to the R development environment and to teach to these the basics of
+data science with such environment and language.
+
+Work-wise, the practice is divided in the two following parts:
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection*{Development on provided dataset}
+In this section, the student will have to formalize and develop on a provided
+exercise and given dataset by the professor. This does not only enable the
+professor to analyze if such student has completely and correctly understood the
+contents of the laboratory practice, but it also serves as a starting point for
+any student unable to face the workload of such project without any kind of
+previous guidance or help.
+
+This specific practice provides the dataset \textit{satelites.txt}, which
+contains the \textbf{names} and \textbf{radii} of some of the most common moons
+of Uranus. Working with this dataset has been thoroughly explained by the
+professor in the almost three laboratory classes dedicated to this specific
+practice, so an explanation or any kind of further analysis into this specific
+dataset is considered not only redundant, but time-wasting as well.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection*{Development on obtained dataset}
+
+This section of the laboratory practice aims to create a deeper understanding in
+the nature of dataset retrieval by the students and to enhance their ability in
+the labors of recognising good quality data sources and valid information
+retrieval from the various analysis performed on these datasets.
+
+The chosen data source for this exercise was scraped off the webpage
+\textit{www.a-z-animals.com}, and the data itself is formed by tuples of the
+names of animals and their respective life expentancies. A Python scraping
+script has been developed solely with the objective to obtain this data.
+
+Also, as extra work, the authors have completed the analysis of all the
+mentioned datasets in Python as well.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Data analysis}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection*{Satelites dataset}
+
+This dataset has been provided in the \textit{txt} format. In order to input it
+into R, the following command must be used.
+
+<<>>=
+while (!"satelites.txt" %in% list.files(getwd()))
+{
+print("Data file not found. Add \"satelites.txt\" to the current directory.")
+invisible(readline(prompt="Press [enter] to continue"))
+}
+
+satelites <- read.table("satelites.txt")
+satelites
+
+radius <- satelites $radio
+radius
+
+@
+When loading external datasets into R, it is important to take into account that
+the working directory must be the same as the file's directory when calling
+read.table(). Otherwise, one the route to where the found can be found must be
+indicated.
+
+Once the data has been read, the authors will proceed to analyze it in the
+following way:
+
+%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection*{Absolute and relative frequencies}
+
+%%%%%%%%%
+
+\textbf{Absolute Frequency}
+
+<<>>= 
+absoluteFreq <- function(set) {table(set)}
+absoluteFreq(radius)
+@
+
+%%%%%%%%%
+
+\textbf{Cumulative Absolute Frequency}
+
+<<>>=
+cumAbsoluteFreq <- function(set) {cumsum(absoluteFreq(set))}
+cumAbsoluteFreq(radius)
+@
+
+%%%%%%%%%
+
+\textbf{Relative Frequency}
+
+<<>>=
+relativeFreq <- function(set) {table(set) / length(set)}
+relativeFreq(radius)
+@
+
+%%%%%%%%%
+\textbf{Cumulative Relative Frequency}
+<<>>=
+cumRelativeFreq <- function(set) {cumsum(relativeFreq(set))}
+cumRelativeFreq(radius)
+@
+%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection*{Arithmetic mean}
+
+<<>>=
+arithmeticMean <- function(set, usrTrim = 0) (mean(set, trim = usrTrim))
+arithmeticMean(radius)
+@
+
+%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection*{Measures of dispersion}
+For this specific section, the following webpage has been used as a \href{http://iridl.ldeo.columbia.edu/dochelp/StatTutorial/Dispersion/index.html#Intro}{reference}
+
+%%%%%%%%%
+\textbf{Range}
+<<>>=
+range <- function(set) {max(set) - min(set)}
+range(radius)
+@
+
+%%%%%%%%%
+\textbf{Standard Deviation}
+<<>>=
+stdDeviation <- function(set)
+{
+sd(set) * (sqrt((length(set) - 1) / length(set)))
+}
+stdDeviation(radius)
+@
+
+%%%%%%%%%
+\textbf{Variance}
+<<>>=
+variance <- function(set) {var(set) * (length(set) - 1 / length(set))}
+variance(radius)
+@
+
+%%%%%%%%%
+\textbf{Root mean square}
+<<>>=
+rootMeanSqr <- function(set) {sqrt(mean(set ^ 2))}
+rootMeanSqr(radius)
+@
+
+%%%%%%%%%
+\textbf{Root mean square anomaly}
+<<>>=
+rootMeanSqrAn <- function(set) {sqrt(sum(set - mean(set)) ^ 2) / length(set)}
+rootMeanSqrAn(radius)
+@
+
+%%%%%%%%%
+\textbf{Interquartile}
+<<>>=
+interQuartRange <- function(set) {IQR(set)}
+interQuartRange(radius)
+@
+
+%%%%%%%%%
+\textbf{Median absolute deviation}
+<<>>=
+medAbsDeviation <- function(set) {mad(set)}
+medAbsDeviation(radius)
+@
+
+%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection*{Measures of order}
+
+%%%%%%%%%
+\textbf{Median}
+<<>>=
+getMedian <- function(set) {median(set)}
+getMedian(radius)
+@
+
+%%%%%%%%%
+\textbf{Mode}
+<<>>=
+getMode <- function(set)
+{
+uniqueVal <- unique(set)
+uniqueVal[which.max(tabulate(match(set, uniqueVal)))]
+}
+getMode(radius)
+@
+
+%%%%%%%%%
+\textbf{Quartiles}
+<<>>=
+getQuartiles <- function(set) {quantile(set)}
+getQuartiles(radius)
+@
+
+%%%%%%%%%
+\textbf{54th quantile}
+<<>>=
+getQuantiles <- function(set, range = 0) {quantile(set, probs = range)}
+getQuantiles(radius)
+@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection*{Cardata dataset}
+
+The same analysis the authors have performed on the previous dataset will be
+performed on the Cardata dataset. This time, the variable to use will be called
+\textit{mpg} and the 54th quantile and the frequencies are not needed.
+
+%%%%%%%%%%%%%%%%%%%%
+
+In order to analyze \textit{.sav} format, R needs to import the \textit{foreign}
+library. 
+
+<<>>=
+library(foreign)
+@
+
+%%%%%%%%%%%%%%%%%%%
+
+Once the file is read, only the data related to \textit{mpg} is going to matter.
+Also, there may be empty rows or NAs in these records, one must filter these in
+order to perform a correct statistical analysis.
+
+<<>>=
+dataset = read.spss("cardata.sav", to.data.frame=TRUE)
+mpg = dataset$mpg
+mpg = mpg[!is.na(mpg)]
+@
+
+Once the data is prepared, the exact same functions as the previous section can
+be used.
+
+%%%%%%%%%
+
+\subsubsection*{Arithmetic mean}
+<<>>=
+arithmeticMean(mpg)
+@
+
+%%%%%%%%%%%%%%%%%%%
+
+\subsubsection*{Measures of dispersion}
+
+%%%%%%%%%
+
+\textbf{Range}
+<<>>=
+range(mpg)
+@
+%%%%%%%%%
+
+\textbf{Standard Deviation}
+<<>>=
+stdDeviation(mpg)
+@
+
+%%%%%%%%%
+\textbf{Variance}
+<<>>=
+variance(mpg)
+@
+
+%%%%%%%%%%
+
+\textbf{Root mean square}
+<<>>=
+rootMeanSqr(mpg)
+@
+%%%%%%%%%
+
+\textbf{Root mean square anomaly}
+<<>>=
+rootMeanSqrAn(mpg)
+@
+
+%%%%%%%%%
+\textbf{Interquartile range}
+<<>>=
+interQuartRange(mpg)
+@
+
+%%%%%%%%%
+\textbf{Median absolute deviation}
+<<>>=
+medAbsDeviation(mpg)
+@
+
+%%%%%%%%%%%%%%%%%%%
+
+\subsubsection*{Measures of order}
+
+%%%%%%%%%
+
+
+\textbf{Median}
+<<>>=
+getMedian(mpg)
+@
+
+\textbf{Mode}
+<<>>=
+getMode(mpg)
+@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection*{Animal dataset}
+
+%%%%%%%%%%%%%%%%%%%%
+
+<<>>=
+animals <- read.csv(head= T, sep=",", "animals2.csv" )
+animals
+lifespan <- animals $lifespan
+lifespan
+@
+
+%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection*{Absolute and relative frequencies}
+
+%%%%%%%%%
+
+\textbf{Absolute Frequency}
+
+<<>>= 
+absoluteFreq(lifespan)
+@
+
+%%%%%%%%%
+
+\textbf{Cumulative Absolute Frequency}
+
+<<>>=
+cumAbsoluteFreq(lifespan)
+@
+
+%%%%%%%%%
+
+\textbf{Relative Frequency}
+
+<<>>=
+relativeFreq(lifespan)
+@
+
+%%%%%%%%%
+
+\textbf{Cumulative Relative Frequency}
+
+<<>>=
+cumRelativeFreq(lifespan)
+@
+
+%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection*{Arithmetic mean}
+
+<<>>=
+arithmeticMean(lifespan)
+@
+
+%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection*{Measures of dispersion}
+
+For this specific section, the following webpage has been used as a \href{http://iridl.ldeo.columbia.edu/dochelp/StatTutorial/Dispersion/index.html#Intro}{reference}
+
+%%%%%%%%%
+
+\textbf{Range}
+
+<<>>=
+range(lifespan)
+@
+
+%%%%%%%%%
+
+\textbf{Standard Deviation}
+<<>>=
+stdDeviation(lifespan)
+@
+
+%%%%%%%%%
+
+\textbf{Variance}
+<<>>=
+variance(lifespan)
+@
+
+%%%%%%%%%
+
+\textbf{Root mean square}
+<<>>=
+rootMeanSqr(lifespan)
+@
+
+%%%%%%%%%
+
+\textbf{Root mean square anomaly}
+
+<<>>=
+rootMeanSqrAn(lifespan)
+@
+
+
+%%%%%%%%%
+
+\textbf{Interquartile range}
+<<>>=
+interQuartRange(lifespan)
+@
+
+%%%%%%%%%
+
+\textbf{Median absolute deviation}
+<<>>=
+medAbsDeviation(lifespan)
+@
+
+
+%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection*{Measures of order}
+
+%%%%%%%%%
+
+\textbf{Median}
+<<>>=
+getMedian(lifespan)
+@
+
+%%%%%%%%%
+
+\textbf{Mode}
+
+<<>>=
+getMode(lifespan)
+@
+
+%%%%%%%%%
+
+\textbf{Quartiles}
+<<>>=
+getQuartiles(lifespan)
+@
+
+%%%%%%%%%
+
+\textbf{54th quantile}
+
+<<>>=
+getQuantiles(lifespan)
+@
+
+
+
+
+\end{document}

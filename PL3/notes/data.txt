@@ -1,0 +1,11 @@
+    Teoria      Lab     Pract   Calif_Global
+1   A           A       B       Ap
+2   A           B       D       S
+3   D           D       C       Ss
+4   D           D       A       Ss
+5   B           C       B       Ss
+6   C           B       B       Ap
+7   B           B       A       Ap
+8   C           D       C       Ss
+9   B           A       C       Ss
+
