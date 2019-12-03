@@ -1,0 +1,64 @@
+# Practice 5 notes from class by Mr. Teacher
+
+(muestra = matrix(c(4,4,4,3,5,5,1,1,5,4,),2,5))
+(muestra = t(muestra))
+
+(distancias = as.matrix(dist(muestra)))
+(distancias = matrix(distancias,5,5))
+
+- K-neighbors establece una distancia por la cual un punto está tan lejos del
+  resto que se considera un outlier. 
+
+for (i in 1:5) {distancias[,i] = sort(distancias[,i])};(distanciasordenadas = distancias)
+
+k = 3
+
+for (i in 1:5) {if (distanciasordenadas[4,i]>2.5) {print(i); print("es un suceso
+anomalo u outlier")}}
+
+--- optimized ---
+
+for (i in 1:5) {distancias[,i] = sort(distancias[,i])
+                if (distancias[4,i] > 2.5) {print(i)
+                    print("es un outlier")
+
+                }}
+
+#### Caja and Bigotes Analysis
+
+(muestra =
+t(matrix(c(3,2,3.5,12,4.7,4.1,5.2,4.9,7.1,6.1,6.2,5.2,14,5.3),2,7,dimnames =
+list(c("r","d")))))
+
+(muestra = data.frame(muestra))
+(boxplot(muestra$r, range = 1.5, plot = F))
+
+(cuar1r <- quantile(muestra$r, 0.25))
+(cuar3r <- quantile(muestra$r, 0.75))
+
+(int = c(cuar1r - 1.5 * (cuar3r - cuar1r), cuar3r + 1.5 * (cuar3r - cuar1r)))
+
+for (i in 1:length(muestra$r))
+    {
+        if (muestra$r[i] < int[1] || muestra$r[i] > int[2])
+            {
+                print("el suceso"); print(i); print(muestra$r[i]);
+                print("es un suceso outlier")
+            }
+    }
+
+### Media y esas cosas que no hicimos en clase
+
+(intdes = c(mean(muestra$d)-2*sd(muestra$d), mean(muestra$d)+2*sd(muestra$d)))
+
+sdd = sqrt(var(muestra$d)*((length(muestra$d)-1/length(muestra$d))))
+
+### Calcular los outliers cuando tenemos una regression
+
+!! res[i] > 2 * sr  !!
+
+(dfr = lm(muestra$r))
+    (summary (dfr))
+    (res = summary (dfr)$residuals)
+        (sr = sqrt(sum(res^2)/7))
+
