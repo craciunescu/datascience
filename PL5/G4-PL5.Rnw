@@ -1,0 +1,165 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{Sweave}
+
+\title{G4.P-5}
+\author{David Emanuel Craciunescu \and Laura Pérez Medeiro}
+
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Introduction}
+
+The aim of this practice is to detect anomalus data inside of a set of data applying 
+the knowledge of the unit saw in the theorical part.
+
+In order to do that, the practice will be divided in two parts:
+
+\section*{ I Part }
+In this part will be using R language to do four diferent exercise:
+
+\subsection*{Exercise 1}
+In this exercise will be applying K-neightbours' algorithm to the following set of data:
+ 1. {4, 4}; 2. {4, 3}; 3. {5, 5}; 4. {1, 1}; 5. {5, 4}
+ where we have the marks of five different students represent as {Therorical, Practice}.
+ The purpose of this analysis is to obtain the outliers.
+ 
+ The first step consist on introducing the set of data as a matrix of data and creating the 
+ distances' matrix
+ <<>>=
+	 (data <- matrix (c(4,4,3,5,1,2,5,5,0,1,2,2,4,5,2,1),2,8))
+	 (data = t(data))
+	 
+	 (distances = as.matrix(dist(data)))
+	 (distances = matrix(distances, 5, 5))
+	 
+	 for (i in 1:5) {distances[,i] = sort(distances[,i])};(sortDistances = distances)
+ @
+ 
+ The last command execute is just for sorting the distance's matrix.
+ 
+ Then all the points which have a distance higher than 2.5 are consider as outliers. In order to do that,
+ distances' array is 
+ 
+ <<>>=
+	for (i in 1:5) {
+		distances[,i] = sort(distances[,i])
+        if (distances[4,i] > 2.5){
+			print(i);
+            print("es un outlier")
+		}
+	}
+@
+
+The algorithm before can be optimized as the following way:
+
+<<>>=
+	for (i in 1:5) {
+		if (sortDistances[4,i]>2.5){
+			print(i); 
+			print("es un suceso anomalo u outlier")
+		}
+	}
+ @
+ 
+
+\subsection*{Exercise 2}
+
+In this exercise box and whisker diagram will be applied in the same data set used in the third exercise
+of outlier detection done in class.
+
+<<>>=
+// Introduce data set
+
+(resistanceData =  t(matrix(c(3,2,3.5,12,4.7,4.1,5.2,4.9,7.1,6.1,6.2,5.2,14,5.3),2,7,dimnames =
+list(c("r","d")))))
+
+(resistanceData = data.frame(resistanceData))
+@
+ 
+Then we used boxplot's function in order to return a list of 6 components, where:
+
+\begin{enumerate}
+	\item stats: contains the position of the upper an lower extrems with the median
+	\item n: is the number of observation the boxplot is drawn with
+	\item conf: is the upper and lower extrems of the notch
+	\item out: is the value of the outlier found in the data set
+	\item group: is a vector of the same length as out whose elements indicates to which group
+	the outliers belongs 
+	\item names: is a vector which contains the names for the groups
+\end
+
+The following step consist on calcultaing the first and third queantil with the median in order to 
+detect which value is the outlier.
+
+<<>>=
+(cuar1r <- quantile(resistanceData$r, 0.25))
+(cuar3r <- quantile(resistanceData$r, 0.75))
+
+(int = c(cuar1r - 1.5 * (cuar3r - cuar1r), cuar3r + 1.5 * (cuar3r - cuar1r)))
+
+for (i in 1:length(resistanceData$r))
+    {
+        if (resistanceData$r[i] < int[1] || resistanceData$r[i] > int[2])
+            {
+                print("el suceso"); 
+				print(i);
+				print(resistanceData$r[i]);
+                print("es un suceso outlier")
+            }
+    }
+@
+ 
+ 
+\subsection*{Exercise 3}
+
+In this exercise dispersion meassures will be used in order to detect outliers
+ 
+### Media y esas cosas que no hicimos en clase
+
+(intdes = c(mean(muestra$d)-2*sd(muestra$d), mean(muestra$d)+2*sd(muestra$d)))
+
+sdd = sqrt(var(muestra$d)*((length(muestra$d)-1/length(muestra$d))))
+
+
+\subsection*{Exercise 4}
+
+### Calcular los outliers cuando tenemos una regression
+
+!! res[i] > 2 * sr  !!
+
+(dfr = lm(muestra$r))
+    (summary (dfr))
+    (res = summary (dfr)$residuals)
+        (sr = sqrt(sum(res^2)/7))
+ 
+ 
+ 
+\section*{II Part}
+
+For this part will be using python in order to detect anomalus data from the 
+Challenge Network dataset, which contains data related from network traffic flow
+which has been simulated over 217 hours. In this time, it had been captured the 
+interactions between hosts in the network.
+
+
+All the information related to this part can be found in the Jupyter's Notebook
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
