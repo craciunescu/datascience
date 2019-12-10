@@ -1,7 +1,9 @@
 # Practice 5 notes from class by Mr. Teacher
 
-(muestra = matrix(c(4,4,4,3,5,5,1,1,5,4,),2,5))
-(muestra = t(muestra))
+() surrounding a sequence automatically prints that sequence. 
+
+muestra <- matrix(c(4, 4, 4, 3, 5, 5, 1, 1, 5, 4), 2, 5)
+(muestra <- t(muestra))
 
 (distancias = as.matrix(dist(muestra)))
 (distancias = matrix(distancias,5,5))
