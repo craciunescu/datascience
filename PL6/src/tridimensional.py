@@ -1,6 +1,6 @@
 ################################################################################
-#           Fundamentos de la Ciencia de Datos - 78106 - R-PL5                 #
-#                               Grupo 4 - P5                                   #
+#           Fundamentos de la Ciencia de Datos - 78106 - R-PL6                 #
+#                               Grupo 4 - P6                                   #
 #   Authors:                                                                   #
 #   - David Emanuel Craciunescu                                                #
 #   - Laura Pérez Medeiro                                                      #

@@ -140,8 +140,6 @@ sdd = sqrt(var(muestra$d)*((length(muestra$d)-1/length(muestra$d))))
     (res = summary (dfr)$residuals)
         (sr = sqrt(sum(res^2)/7))
  
- 
- 
 \section*{II Part}
 
 For this part will be using python in order to detect anomalus data from the 
@@ -149,17 +147,4 @@ Challenge Network dataset, which contains data related from network traffic flow
 which has been simulated over 217 hours. In this time, it had been captured the 
 interactions between hosts in the network.
 
-
 All the information related to this part can be found in the Jupyter's Notebook
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
