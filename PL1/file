@@ -1,0 +1,49 @@
+List of 46
+ $ --authors: logi FALSE
+ $ --help   : logi FALSE
+ $ --license: logi FALSE
+ $ --version: logi FALSE
+ $ --abs    : logi FALSE
+ $ --cum-abs: logi FALSE
+ $ --rel    : logi FALSE
+ $ --cum-rel: logi FALSE
+ $ --iq     : logi FALSE
+ $ --mad    : logi FALSE
+ $ --rng    : logi FALSE
+ $ --rms    : logi FALSE
+ $ --rmsa   : logi FALSE
+ $ --std    : logi FALSE
+ $ --vari   : logi FALSE
+ $ --med    : logi TRUE
+ $ --mod    : logi FALSE
+ $ --qnt    : NULL
+ $ --qrt    : NULL
+ $ --path   : chr "here"
+ $ --var    : chr "here"
+ $ freq     : logi FALSE
+ $ mean     : logi FALSE
+ $ disp     : logi FALSE
+ $ ord      : logi TRUE
+ $ authors  : logi FALSE
+ $ help     : logi FALSE
+ $ license  : logi FALSE
+ $ version  : logi FALSE
+ $ abs      : logi FALSE
+ $ cum-abs  : logi FALSE
+ $ rel      : logi FALSE
+ $ cum-rel  : logi FALSE
+ $ iq       : logi FALSE
+ $ mad      : logi FALSE
+ $ rng      : logi FALSE
+ $ rms      : logi FALSE
+ $ rmsa     : logi FALSE
+ $ std      : logi FALSE
+ $ vari     : logi FALSE
+ $ med      : logi TRUE
+ $ mod      : logi FALSE
+ $ qnt      : NULL
+ $ qrt      : NULL
+ $ path     : chr "here"
+ $ var      : chr "here"
+NULL
+else%      
