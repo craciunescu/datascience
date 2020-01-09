@@ -36,13 +36,13 @@ arithmeticMean <- function(set, usrTrim = 0) (mean(set, trim = usrTrim))
           range <- function(set) {max(set) - min(set)}
 
 ## 3.2. Standard Deviation.
-   stdDeviation <- function(set) 
+   stdDeviation <- function(set)
 {
    sd(set) * (sqrt((length(set) - 1) / length(set)))
 }
 
 ## 3.3. Variance.
-       variance <- function(set) {var(set) * (length(set) - 1 / length(set))} 
+       variance <- function(set) {var(set) * (length(set) - 1 / length(set))}
 
 ## 3.4. Root Mean Square.
     rootMeanSqr <- function(set) {sqrt(mean(set ^ 2))}
@@ -64,7 +64,7 @@ medAbsDeviation <- function(set) {mad(set)}
 getMedian    <- function(set) {median(set)}
 
 ## 4.2. Mode.
-getMode      <- function(set) 
+getMode      <- function(set)
 {
     uniqueVal <- unique(set)
     uniqueVal[which.max(tabulate(match(set, uniqueVal)))]

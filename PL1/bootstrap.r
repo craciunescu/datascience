@@ -21,6 +21,10 @@ if (grepl(".*/PL1", dir_current, perl=T)) {
 
 # list_of_packages[!(list_of_packages %in% installed.packages()[, "Package"])]
 
+
+
+# Check that the packages are installed.
+
 #'
 #sStats: a Simple STATistical analyzer.
 #
